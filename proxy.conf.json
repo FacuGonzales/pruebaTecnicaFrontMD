@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://akabab.github.io/superhero-api/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
