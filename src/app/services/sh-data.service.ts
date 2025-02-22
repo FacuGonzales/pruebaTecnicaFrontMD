@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { SuperHero } from '../models/super-hero-model';
 import { API_CONFIG } from '../api.config';
 import { LocalstorageDataService } from './localstorage-data.service';
@@ -11,20 +11,49 @@ import { LocalstorageDataService } from './localstorage-data.service';
 export class ShDataService {
   constructor(private http: HttpClient, private localstorageData: LocalstorageDataService) { }
 
-  getHeroesForApi(): Observable<SuperHero[]> {
-    return this.http.get<SuperHero[]>(`${API_CONFIG.baseUrl}`);
+  private getHeroesForApi(id?: number): Observable<SuperHero[]> {
+    let route: string = id ? `${API_CONFIG.baseUrl}/id/${id}.json` : `${API_CONFIG.baseUrl}/all.json`;
+    return this.http.get<SuperHero[]>(route);
   }
 
-  getHeroes(): Observable<SuperHero[]> {
-    const heroes: SuperHero[] = this.localstorageData.getItem('hero');
+  private getHeroesForLocal(): SuperHero[] {
+    return this.localstorageData.getItem('heroes');
+  }
 
-    if(heroes.length) {
-      return new Observable((observer) => observer.next(heroes));
+  public getHeroes(): Observable<SuperHero[]> {
+    const heroesLocal: SuperHero[] = this.getHeroesForLocal();
+
+    if(heroesLocal.length) {
+      return new Observable((observer) => {
+        observer.next(heroesLocal);
+        observer.complete()
+      });
     } else {
       return this.getHeroesForApi().pipe(
         tap((heroesOfApi) => {
-          this.localstorageData.setItem('hero', heroesOfApi);
+          this.localstorageData.setItem('heroes', heroesOfApi);
         })
+      )
+    }
+  }
+
+  public getHeroById(id: number): Observable<SuperHero> {
+    const heroesLocal: SuperHero[] = this.getHeroesForLocal();
+
+    const heroSelected = heroesLocal.find(hero => hero.id === id);
+
+    if(heroSelected) {
+      return new Observable((observer) => {
+        observer.next(heroSelected);
+        observer.complete();
+      })
+    } else {
+      return this.getHeroesForApi(id).pipe(
+        map(((heroes: SuperHero[]) => {
+          const updateData = [...heroesLocal, heroes[0]];
+          this.localstorageData.setItem('heroes', updateData);
+          return heroes[0]
+        }))
       )
     }
   }
