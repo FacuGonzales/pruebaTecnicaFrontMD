@@ -11,7 +11,7 @@ export const heroInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next
             const formatData = e.body.map(formatHero);
             return e.clone({ body: formatData })
           } else {
-            const formData = e.body.map(formatHero);
+            const formData = formatHero(e.body);
             return e.clone({ body: formData })
           }
         }
