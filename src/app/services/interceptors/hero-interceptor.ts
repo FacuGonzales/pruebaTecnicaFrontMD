@@ -6,9 +6,14 @@ export const heroInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next
   return next(req).pipe(
     map((e: HttpEvent<any>) => {
       if(e instanceof HttpResponse) {
-        if(e && Array.isArray(e.body)) {
-          const formatData = e.body.map(formatHero);
-          return e.clone({ body: formatData })
+        if(e.body) {
+          if(Array.isArray(e.body)) {
+            const formatData = e.body.map(formatHero);
+            return e.clone({ body: formatData })
+          } else {
+            const formData = e.body.map(formatHero);
+            return e.clone({ body: formData })
+          }
         }
       }
       return e;
