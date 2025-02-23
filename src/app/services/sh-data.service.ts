@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, of, Subject, tap } from 'rxjs';
 import { SuperHero } from '../models/super-hero-model';
 import { API_CONFIG } from '../api.config';
 import { LocalstorageDataService } from './localstorage-data.service';
@@ -9,6 +9,9 @@ import { LocalstorageDataService } from './localstorage-data.service';
   providedIn: 'root'
 })
 export class ShDataService {
+  private heroesSubject = new Subject<SuperHero[]>();
+  heroes$ = this.heroesSubject.asObservable();
+
   constructor(private http: HttpClient, private localstorageData: LocalstorageDataService) { }
 
   private getHeroesForApi(id?: number): Observable<SuperHero[]> {
@@ -24,14 +27,13 @@ export class ShDataService {
     const heroesLocal: SuperHero[] = this.getHeroesForLocal();
 
     if(heroesLocal.length) {
-      return new Observable((observer) => {
-        observer.next(heroesLocal);
-        observer.complete()
-      });
+      this.heroesSubject.next(heroesLocal);
+      return of(heroesLocal);
     } else {
       return this.getHeroesForApi().pipe(
-        tap((heroesOfApi) => {
-          this.localstorageData.setItem('heroes', heroesOfApi);
+        tap((heroes) => {
+          this.localstorageData.setItem('heroes', heroes);
+          this.heroesSubject.next(heroes);
         })
       )
     }
@@ -43,18 +45,24 @@ export class ShDataService {
     const heroSelected = heroesLocal.find(hero => hero.id === id);
 
     if(heroSelected) {
-      return new Observable((observer) => {
-        observer.next(heroSelected);
-        observer.complete();
-      })
+      return of(heroSelected);
     } else {
       return this.getHeroesForApi(id).pipe(
         map(((heroes: SuperHero[]) => {
           const updateData = [...heroesLocal, heroes[0]];
           this.localstorageData.setItem('heroes', updateData);
+          this.heroesSubject.next(updateData)
           return heroes[0]
         }))
       )
     }
+  }
+
+  public createHero(hero: SuperHero): void {
+    const heroesLocal: SuperHero[] = this.getHeroesForLocal();
+    heroesLocal.push(hero);
+    this.localstorageData.setItem('heroes', heroesLocal);
+
+    this.heroesSubject.next(heroesLocal);
   }
 }
