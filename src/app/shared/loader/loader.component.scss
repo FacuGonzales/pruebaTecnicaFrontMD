@@ -1,0 +1,40 @@
+.loader {
+  animation: rotation 1s linear infinite;
+  border: 2px solid #569cca;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 48px;
+  position: relative;
+  width: 48px;
+}
+
+.loader::after,
+.loader::before {
+  background: #013086;
+  border-radius: 50%;
+  box-sizing: border-box;
+  content: '';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 6px;
+  transform: translate(150%, 150%);
+}
+.loader::before {
+  bottom: 0;
+  left: auto;
+  top: auto;
+  right: 0;
+  transform: translate(-150%, -150%);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
