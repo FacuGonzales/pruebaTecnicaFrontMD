@@ -77,4 +77,22 @@ export class ShDataService {
     heroesLocal[heroIndex] = hero;
     this.heroesSubject.next(heroesLocal);
   }
+
+  public deleteHero(id: number): void {
+    const heroesLocal: SuperHero[] = this.getHeroesForLocal();
+    const heroesUpdateList: SuperHero[] = heroesLocal.filter(h => h.id !== id);
+
+    this.localstorageData.setItem('heroes', heroesUpdateList);
+    this.heroesSubject.next(heroesUpdateList);
+  }
+
+  public filterByName(name: string): void {
+    const heroesLocal: SuperHero[] = this.getHeroesForLocal();
+
+    const heroesFilter: SuperHero[] = heroesLocal.filter(h => {
+      h.name.toLowerCase().includes(name.toLowerCase())
+    })
+
+    this.heroesSubject.next(heroesFilter)
+  }
 }
