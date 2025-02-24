@@ -11,8 +11,8 @@ export const heroInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next
             const formatData = e.body.map(formatHero);
             return e.clone({ body: formatData })
           } else {
-            const formData = formatHero(e.body);
-            return e.clone({ body: formData })
+            const formatData = formatHero(e.body);
+            return e.clone({ body: formatData })
           }
         }
       }
@@ -25,10 +25,38 @@ export function formatHero(data: any): SuperHero {
   return {
     id: data.id,
     name: data.name,
-    images: data.images,
-    appearance: data.appearance,
-    biography: data.biography,
-    connections: data.connections,
-    powerstats: data.powerstats
+    images: {
+      xs: data.images.xs,
+      sm: data.images.sm,
+      md: data.images.md,
+      lg: data.images.lg
+    },
+    appearance: {
+      gender: data.appearance.gender,
+      height: data.appearance.height,
+      weight: data.appearance.weight,
+      race: data.appearance.race
+    },
+    biography: {
+      aliases: data.biography.aliases,
+      alignment: data.biography.alignment,
+      alterEgos: data.biography.alterEgos,
+      firstAppearance: data.biography.firstAppearance,
+      fullName: data.biography.fullName,
+      placeOfBirth: data.biography.placeOfBirth,
+      publisher: data.biography.publisher
+    },
+    connections: {
+      groupAffiliation: data.connections.groupAffiliation,
+      relatives: data.connections.relatives
+    },
+    powerstats: {
+      combat: data.powerstats.combat,
+      durability: data.powerstats.durability,
+      intelligence: data.powerstats.intelligence,
+      power: data.powerstats.power,
+      speed: data.powerstats.speed,
+      strength: data.powerstats.strength
+    }
   };
 }
