@@ -1,0 +1,12 @@
+<div class="finder">
+  <mat-form-field class="example-form-field" appearance="outline">
+    <mat-label>Buscar por nombre</mat-label>
+
+    <input matInput type="text" [(ngModel)]="valueFilter" appTextUppercaseTransform (input)="filtered()" placeholder="Ingrese 3 o más letras">
+
+    <button matSuffix mat-icon-button aria-label="Clear" *ngIf="valueFilter" (click)="valueFilter=''">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </mat-form-field>
+</div>
