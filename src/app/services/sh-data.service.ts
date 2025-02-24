@@ -34,6 +34,7 @@ export class ShDataService {
         tap((heroes) => {
           this.localstorageData.setItem('heroes', heroes);
           this.heroesSubject.next(heroes);
+          return heroes;
         })
       )
     }
@@ -86,13 +87,14 @@ export class ShDataService {
     this.heroesSubject.next(heroesUpdateList);
   }
 
-  public filterByName(name: string): void {
+  public filterByName(name: string): Observable<SuperHero[]> {
     const heroesLocal: SuperHero[] = this.getHeroesForLocal();
 
-    const heroesFilter: SuperHero[] = heroesLocal.filter(h => {
+    const heroesFilter: SuperHero[] = heroesLocal.filter(h =>
       h.name.toLowerCase().includes(name.toLowerCase())
-    })
+    )
 
     this.heroesSubject.next(heroesFilter)
+    return of(heroesFilter);
   }
 }
