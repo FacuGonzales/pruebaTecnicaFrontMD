@@ -20,7 +20,11 @@ export class HeroFinderComponent {
   public valueFilter: string = '';
 
   public filtered(): void {
-    if(this.valueFilter.length >= 3)
-    this.emitName.emit(this.valueFilter)
+    this.emitName.emit(this.valueFilter);
+  }
+
+  public cleanFilter(): void {
+    this.valueFilter = '';
+    this.emitName.emit('');
   }
 }

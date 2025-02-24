@@ -4,7 +4,7 @@
 
     <input matInput type="text" [(ngModel)]="valueFilter" appTextUppercaseTransform (input)="filtered()" placeholder="Ingrese 3 o más letras">
 
-    <button matSuffix mat-icon-button aria-label="Clear" *ngIf="valueFilter" (click)="valueFilter=''">
+    <button matSuffix mat-icon-button aria-label="Clear" *ngIf="valueFilter" (click)="cleanFilter()">
       <mat-icon>close</mat-icon>
     </button>
 
