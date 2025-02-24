@@ -49,6 +49,8 @@ export class ShDataService {
     } else {
       return this.getHeroesForApi(id).pipe(
         map(((heroes: SuperHero[]) => {
+          if(!heroes.length) throw new Error('No se encontro el heroe con el id ingresado.');
+
           const updateData = [...heroesLocal, heroes[0]];
           this.localstorageData.setItem('heroes', updateData);
           this.heroesSubject.next(updateData)
@@ -63,6 +65,16 @@ export class ShDataService {
     heroesLocal.push(hero);
     this.localstorageData.setItem('heroes', heroesLocal);
 
+    this.heroesSubject.next(heroesLocal);
+  }
+
+  public updateDataHero(hero: SuperHero): void {
+    const heroesLocal: SuperHero[] = this.getHeroesForLocal();
+    const heroIndex = heroesLocal.findIndex(h => h.id === hero.id);
+
+    if(heroIndex === -1) throw new Error('No se encontro el heroe solicitado');
+
+    heroesLocal[heroIndex] = hero;
     this.heroesSubject.next(heroesLocal);
   }
 }
