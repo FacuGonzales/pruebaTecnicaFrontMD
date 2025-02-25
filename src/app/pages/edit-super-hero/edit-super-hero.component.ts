@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AlertsService } from '../../services/alerts.service';
 import { AlertMessage } from '../../models/alert-message';
+import { ROUTES_CONST } from '../../constants/routes.constants';
 
 @Component({
   selector: 'app-edit-super-hero',
@@ -30,7 +31,7 @@ export class EditSuperHeroComponent implements OnDestroy {
               private alert: AlertsService) {
     this.activateRoute.url.subscribe(url => {
       let _route = url.join('/');
-      this.isNewHero = _route === 'create';
+      this.isNewHero = _route === ROUTES_CONST.CREATE;
       this.title = this.isNewHero ? 'EDIT.CREATE' : 'EDIT.UPDATE';
     })
 
@@ -56,7 +57,7 @@ export class EditSuperHeroComponent implements OnDestroy {
 
 
   public cancel(back: boolean): void {
-    this.router.navigate(['/home']);
+    this.router.navigate([ROUTES_CONST.HOME]);
   }
 
   public save(hero: SuperHero): void {
@@ -80,7 +81,7 @@ export class EditSuperHeroComponent implements OnDestroy {
     this.alert.success(message).pipe(takeUntil(this.destroy$))
     .subscribe((resp: boolean) => {
       if(resp) {
-        this.router.navigate(['/home']);
+        this.router.navigate([ROUTES_CONST.HOME]);
       }
     })
   }
