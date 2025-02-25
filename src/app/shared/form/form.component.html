@@ -1,0 +1,234 @@
+<div class="content-form">
+  <form [formGroup]="form">
+
+    <div class="content-form__name">
+      <mat-form-field class="content-input" appearance="outline">
+        <mat-label>{{'MODAL.NAME' | translate}}</mat-label>
+        <input type="text"
+               matInput
+               formControlName="name"
+               placeholder="{{'MODAL.NAME' | translate}}">
+      </mat-form-field>
+
+      <div class="content-error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        {{'EDIT.ERRORS.NAME_REQUIRED' | translate}}
+      </div>
+    </div>
+
+    <div class="content-form__appearance">
+
+      <div class="content-form__appearance--gender">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.GENDER' | translate}}</mat-label>
+          <input type="text"
+                 matInput
+                 formControlName="gender"
+                 placeholder="{{'MODAL.GENDER' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched">
+          {{'EDIT.ERRORS.GENDER_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__appearance--height">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.HEIGTH' | translate}}</mat-label>
+          <input type="text"
+                matInput
+                formControlName="height"
+                placeholder="{{'MODAL.HEIGTH' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('height')?.invalid && form.get('height')?.touched">
+          {{'EDIT.ERRORS.HEIGTH_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__appearance--weight">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.WEIGHT' | translate}}</mat-label>
+          <input type="text"
+                matInput
+                formControlName="weight"
+                placeholder="{{'MODAL.WEIGHT' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('weight')?.invalid && form.get('weight')?.touched">
+          {{'EDIT.ERRORS.WEIGHT_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__appearance--race">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.RACE' | translate}}</mat-label>
+          <input type="text"
+                matInput
+                formControlName="race"
+                placeholder="{{'MODAL.RACE' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('race')?.invalid && form.get('race')?.touched">
+          {{'EDIT.ERRORS.RACE_REQUIRED' | translate}}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="content-form__biography">
+      <div class="content-form__biography--alignment">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.ALIGNMENT' | translate}}</mat-label>
+          <input type="text"
+                matInput
+                formControlName="alignment"
+                placeholder="{{'MODAL.ALIGNMENT' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('alignment')?.invalid && form.get('alignment')?.touched">
+          {{'EDIT.ERRORS.ALIGNMENT_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__biography--firstAppearance">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.FIRST_APPEARANCE' | translate}}</mat-label>
+          <input type="text"
+                matInput
+                formControlName="firstAppearance"
+                placeholder="{{'MODAL.FIRST_APPEARANCE' | translate}}">
+        </mat-form-field>
+      </div>
+
+      <div class="content-form__biography--fullName">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.FULL_NAME' | translate}}</mat-label>
+          <input type="text"
+                matInput
+                formControlName="fullName"
+                placeholder="{{'MODAL.FULL_NAME' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched">
+          {{'EDIT.ERRORS.FULL_NAME_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__biography--placeOfBirth">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.PLACE_OF_BIRTH' | translate}}</mat-label>
+          <input type="text"
+                matInput
+                formControlName="placeOfBirth"
+                placeholder="{{'MODAL.PLACE_OF_BIRTH' | translate}}">
+        </mat-form-field>
+      </div>
+
+      <div class="content-form__biography--publisher">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.PUBLISHER' | translate}}</mat-label>
+          <input type="text"
+                matInput
+                formControlName="publisher"
+                placeholder="{{'MODAL.PUBLISHER' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('publisher')?.invalid && form.get('publisher')?.touched">
+          {{'EDIT.ERRORS.PUBLISHER_REQUIRED' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="content-form__powerstats">
+      <div class="content-form__powerstats--combat">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.COMBAT' | translate}}</mat-label>
+          <input type="number"
+                matInput
+                formControlName="combat"
+                placeholder="{{'MODAL.COMBAT' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('combat')?.invalid && form.get('combat')?.touched">
+          {{'EDIT.ERRORS.COMBAT_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__powerstats--durability">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.DURABILITY' | translate}}</mat-label>
+          <input type="number"
+                matInput
+                formControlName="durability"
+                placeholder="{{'MODAL.DURABILITY' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('durability')?.invalid && form.get('durability')?.touched">
+          {{'EDIT.ERRORS.DURABILITY_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__powerstats--intelligence">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.INTELLIGENCE' | translate}}</mat-label>
+          <input type="number"
+                matInput
+                formControlName="intelligence"
+                placeholder="{{'MODAL.INTELLIGENCE' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('intelligence')?.invalid && form.get('intelligence')?.touched">
+          {{'EDIT.ERRORS.INTELLIGENCE_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__powerstats--power">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.POWER' | translate}}</mat-label>
+          <input type="number"
+                matInput
+                formControlName="power"
+                placeholder="{{'MODAL.POWER' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('power')?.invalid && form.get('power')?.touched">
+          {{'EDIT.ERRORS.POWER_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__powerstats--speed">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.SPEED' | translate}}</mat-label>
+          <input type="number"
+                matInput
+                formControlName="speed"
+                placeholder="{{'MODAL.POWER' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('speed')?.invalid && form.get('speed')?.touched">
+          {{'EDIT.ERRORS.SPEED_REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <div class="content-form__powerstats--strength">
+        <mat-form-field class="content-input" appearance="outline">
+          <mat-label>{{'MODAL.STRENGTH' | translate}}</mat-label>
+          <input type="number"
+                matInput
+                formControlName="strength"
+                placeholder="{{'MODAL.STRENGTH' | translate}}">
+        </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('strength')?.invalid && form.get('strength')?.touched">
+          {{'EDIT.ERRORS.STRENGTH_REQUIRED' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="content-form__btns">
+      <button class="content-form__btns--confirm" mat-flat-button [disabled]="form.invalid" (click)="save()">{{'SAVE' | translate}}</button>
+
+      <button class="content-form__btns--cancel" mat-flat-button (click)="cancel()">{{'CANCEL' | translate}}</button>
+    </div>
+  </form>
+</div>

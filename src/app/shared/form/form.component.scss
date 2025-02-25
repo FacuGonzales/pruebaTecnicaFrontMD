@@ -1,0 +1,77 @@
+@import "../../../assets/colors/colors.scss";
+
+::ng-deep .mat-mdc-unelevated-button[disabled], .mat-mdc-unelevated-button.mat-mdc-button-disabled {
+    cursor: no-drop;
+    color: $gray-disabled !important;
+    background-color: $gray-fonts-disabled !important;
+}
+
+.content-form {
+  width: 100%;
+
+  &__name {
+    width: 100%;
+  }
+
+  &__appearance {
+    display: grid;
+    gap: 15px;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__biography {
+    display: grid;
+    gap: 15px;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__powerstats {
+    display: grid;
+    gap: 15px;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__btns {
+    width: 100%;
+    display: grid;
+    gap: 15px;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+
+    &--confirm {
+      background-color: $primary-color !important;
+      color: $white!important;
+    }
+
+    &--cancel {
+      background-color: $secondary-color !important;
+      color: $white!important;
+    }
+  }
+}
+
+.content-input {
+  width: 100%;
+}
+
+.content-error {
+  color: $red;
+  margin: 10px 0;
+  position: relative;
+  top: -20px;
+}
+
+
+@media (max-width: 780px) {
+  .content-form {
+    margin: 0 auto;
+    width: 90%;
+
+    &__appearance, &__biography, &__powerstats {
+      display: block;
+    }
+  }
+}
