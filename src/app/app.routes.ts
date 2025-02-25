@@ -13,7 +13,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/edit-super-hero/edit-super-hero.component').then(p => p.EditSuperHeroComponent)
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     loadComponent: () => import('./pages/edit-super-hero/edit-super-hero.component').then(p => p.EditSuperHeroComponent)
   },
   {
