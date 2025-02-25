@@ -2,39 +2,45 @@
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef>Imagen</th>
+      <th mat-header-cell *matHeaderCellDef>{{ 'TABLE.COLUMNS.IMAGE' | translate}}</th>
       <td mat-cell *matCellDef="let hero">
-        <img src="{{ hero.images.xs }}" alt="super-hero">
+        <ng-container *ngIf="hero.images; else noData">
+          <img src="{{ hero?.images?.xs }}" alt="super-hero" class="image">
+        </ng-container>
+
+        <ng-template #noData>
+          <p>{{ 'NO_IMAGE' | translate }}</p>
+        </ng-template>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>{{ 'TABLE.COLUMNS.NAME' | translate}}</th>
       <td mat-cell *matCellDef="let hero">{{ hero.name }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="options" stickyEnd>
+    <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-      <td mat-cell *matCellDef="let hero" [matMenuTriggerFor]="menu">
+      <td mat-cell *matCellDef="let hero" [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
 
         <mat-icon>more_vert</mat-icon>
 
         <mat-menu #menu="matMenu" xPosition="before">
           <button type="button" mat-menu-item (click)="onEditHero(hero)">
             <mat-icon>edit</mat-icon>
-            <span>Editar Heroe</span>
+            <span>{{ 'TABLE.OPTIONS.EDIT' | translate}}</span>
           </button>
 
           <button type="button" mat-menu-item (click)="onDeleteHero(hero)">
             <mat-icon>delete</mat-icon>
-            <span>Borrar Heroe</span>
+            <span>{{ 'TABLE.OPTIONS.DELETE' | translate}}</span>
           </button>
         </mat-menu>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="viewItem(row)"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"

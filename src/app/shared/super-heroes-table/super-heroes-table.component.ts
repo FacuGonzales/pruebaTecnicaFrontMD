@@ -4,11 +4,13 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { SuperHero } from '../../models/super-hero-model';
+import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-super-heroes-table',
   standalone: true,
-  imports: [ MatTableModule, MatPaginatorModule, MatIconModule, MatMenuModule ],
+  imports: [ CommonModule, TranslateModule, MatTableModule, MatPaginatorModule, MatIconModule, MatMenuModule ],
   templateUrl: './super-heroes-table.component.html',
   styleUrl: './super-heroes-table.component.scss'
 })
@@ -16,18 +18,26 @@ export class SuperHeroesTableComponent implements OnInit, OnChanges, AfterViewIn
   @Input() superHeroesList: SuperHero[] = [];
   @Output() emitEditHero = new EventEmitter();
   @Output() emitDeleteHero = new EventEmitter();
+  @Output() selectHero = new EventEmitter();
 
-  displayedColumns: string[] = ['image', 'name', 'options'];
-  dataSource = new MatTableDataSource<SuperHero>();
+  public selectedHero?: SuperHero;
+  public displayedColumns: string[] = ['image', 'name', 'options'];
+  public dataSource = new MatTableDataSource<SuperHero>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+
+  constructor(public translate: TranslateService
+              ) {
+    this.translate.setDefaultLang('es');
+    this.translate.use('es');
+  }
 
   public ngAfterViewInit(): void {
     if(this.paginator) this.dataSource.paginator = this.paginator;
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if(this.superHeroesList) {
+    if(changes['superHeroesList'] && this.superHeroesList) {
       this.completData();
     }
   }
@@ -47,5 +57,10 @@ export class SuperHeroesTableComponent implements OnInit, OnChanges, AfterViewIn
 
   public onDeleteHero(hero: SuperHero): void {
     this.emitDeleteHero.emit(hero);
+  }
+
+  public viewItem(hero: SuperHero): void {
+    this.selectedHero = hero;
+    this.selectHero.emit(hero);
   }
 }
