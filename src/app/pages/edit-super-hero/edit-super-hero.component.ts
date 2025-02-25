@@ -6,6 +6,8 @@ import { SuperHero } from '../../models/super-hero-model';
 import { ShDataService } from '../../services/sh-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { AlertsService } from '../../services/alerts.service';
+import { AlertMessage } from '../../models/alert-message';
 
 @Component({
   selector: 'app-edit-super-hero',
@@ -16,16 +18,19 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class EditSuperHeroComponent implements OnDestroy {
   public id: number = 0;
-  public heroEdit!: SuperHero;
+  public heroEdit?: SuperHero;
   public title: string = '';
   public isNewHero: boolean = false;
 
   private destroy$ = new Subject<void>();
 
-  constructor(private superHeroData: ShDataService, private router: Router, private activateRoute: ActivatedRoute) {
+  constructor(private superHeroData: ShDataService,
+              private router: Router,
+              private activateRoute: ActivatedRoute,
+              private alert: AlertsService) {
     this.activateRoute.url.subscribe(url => {
       let _route = url.join('/');
-      this.isNewHero = (_route === 'create') ? true : false;
+      this.isNewHero = _route === 'create';
       this.title = this.isNewHero ? 'EDIT.CREATE' : 'EDIT.UPDATE';
     })
 
@@ -55,12 +60,28 @@ export class EditSuperHeroComponent implements OnDestroy {
   }
 
   public save(hero: SuperHero): void {
+    let message: AlertMessage = {
+      title: 'ALERTS.MESSAGES.OK.TITLE',
+      text: this.isNewHero
+      ? 'ALERTS.MESSAGES.OK.TEXT_CREATE'
+      : 'ALERTS.MESSAGES.OK.TEXT_UPDATE'
+    }
+
     if(this.isNewHero) {
       this.superHeroData.createHero(hero);
     } else {
-      this.superHeroData.updateDataHero(hero)
+      this.superHeroData.updateDataHero(hero);
     }
 
-    this.router.navigate(['/home']);
+    this.confirm(message);
+  }
+
+  public confirm(message: AlertMessage): void {
+    this.alert.success(message).pipe(takeUntil(this.destroy$))
+    .subscribe((resp: boolean) => {
+      if(resp) {
+        this.router.navigate(['/home']);
+      }
+    })
   }
 }
