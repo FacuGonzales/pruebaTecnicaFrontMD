@@ -34,15 +34,24 @@ export class AlertsService {
     })
   }
 
-  public success(): void {
-    Swal.fire({
-      title: this.translate.instant('ALERTS.MESSAGES.DELETE.SUCCESS.OK'),
-      text: this.translate.instant('ALERTS.MESSAGES.DELETE.SUCCESS.MESSAGE'),
-      icon: "success"
-    });
+  public success(message: any): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      Swal.fire({
+        title: this.translate.instant(message.title),
+        text: this.translate.instant(message.text),
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          observer.next(true);
+        } else {
+          observer.next(false);
+        }
+        observer.complete();
+      })
+    })
   }
 
-  public error(): void {
+  public error(): void{
     Swal.fire({
       title: this.translate.instant('ALERTS.MESSAGES.ERROR.TITLE'),
       text: this.translate.instant('ALERTS.MESSAGES.ERROR.TEXT'),
