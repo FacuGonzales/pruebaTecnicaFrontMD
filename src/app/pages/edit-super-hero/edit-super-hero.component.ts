@@ -18,7 +18,7 @@ import { AlertMessage } from '../../models/alert-message';
 })
 export class EditSuperHeroComponent implements OnDestroy {
   public id: number = 0;
-  public heroEdit?: SuperHero;
+  public heroEdit!: SuperHero;
   public title: string = '';
   public isNewHero: boolean = false;
 
