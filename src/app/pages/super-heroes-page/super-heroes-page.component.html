@@ -1,0 +1,29 @@
+<div class="container">
+  <app-header-bar [title]="'HOME.TITLE'"></app-header-bar>
+
+  <div class="container__create-btn">
+    <button  class="container__create-btn--button" mat-fab extended (click)="creatHero()">
+      <mat-icon>add</mat-icon> {{ 'HOME.CREATE' | translate }}
+    </button>
+  </div>
+
+  <div class="container__results">
+    <div class="container__results--finder">
+      <app-hero-finder (emitName)="filteredByName($event)"></app-hero-finder>
+    </div>
+
+    <div class="container__results--table-results">
+      <ng-container *ngIf="superHeroesList.length; else noData">
+        <app-super-heroes-table [superHeroesList]="superHeroesList"
+                                (emitEditHero)="editHero($event)"
+                                (emitDeleteHero)="deleteHero($event)"
+                                (selectHero)="selectedHero($event)">
+        </app-super-heroes-table>
+      </ng-container>
+
+      <ng-template #noData>
+        <p class="message-info">{{ 'HOME.MESSAGE' | translate }} {{ valueFilter }}</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

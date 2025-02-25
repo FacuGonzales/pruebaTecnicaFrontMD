@@ -1,0 +1,43 @@
+@import "../../../assets/colors/colors.scss";
+
+.container {
+  width: 100%;
+
+  &__create-btn {
+    width: 100%;
+
+    &--button {
+      background-color: $primary-color;
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+      width: 50%;
+    }
+  }
+  &__results {
+    margin: 0 auto;
+    width: 50%;
+
+    &--table-results {
+      .message-info {
+        color: $white;
+        padding: 100px 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .container {
+    &__create-btn {
+      &--button {
+        width: 95%;
+      }
+    }
+
+    &__results {
+      width: 95%;
+    }
+  }
+}
