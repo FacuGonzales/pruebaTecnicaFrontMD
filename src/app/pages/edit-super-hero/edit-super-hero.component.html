@@ -1,0 +1,10 @@
+<div class="content">
+
+  <div class="content__header">
+    <app-header-bar [title]="'EDIT.CREATE'"></app-header-bar>
+  </div>
+
+  <div class="content__forms">
+    <app-form [data]="heroEdit" (cancelForm)="cancel($event)" (saveForm)="save($event)"></app-form>
+  </div>
+</div>
