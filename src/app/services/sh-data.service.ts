@@ -24,9 +24,12 @@ export class ShDataService {
   }
 
   public getHeroes(): Observable<SuperHero[]> {
-    const heroesLocal: SuperHero[] = this.getHeroesForLocal();
+    let heroesLocal: SuperHero[] = this.getHeroesForLocal();
 
     if(heroesLocal.length) {
+      heroesLocal = heroesLocal.sort((a: SuperHero, b: SuperHero) => {
+        return a.name.localeCompare(b.name);
+      })
       this.heroesSubject.next(heroesLocal);
       return of(heroesLocal);
     } else {
@@ -76,6 +79,8 @@ export class ShDataService {
     if(heroIndex === -1) throw new Error('No se encontro el heroe solicitado');
 
     heroesLocal[heroIndex] = hero;
+    this.localstorageData.setItem('heroes', heroesLocal);
+
     this.heroesSubject.next(heroesLocal);
   }
 
