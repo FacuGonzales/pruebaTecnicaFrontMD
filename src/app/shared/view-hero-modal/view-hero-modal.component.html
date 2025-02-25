@@ -1,7 +1,7 @@
 <div class="content">
   <div class="content__header" mat-dialog-title>
     <div class="content__header--image">
-      <ng-container *ngIf="hero?.images; else noData">
+      <ng-container *ngIf="hero?.images?.sm; else noData">
         <img src="{{ hero?.images?.sm }}" alt="super-hero" class="img">
       </ng-container>
 
