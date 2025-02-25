@@ -1,5 +1,91 @@
 {
-  "PRINCIPAL" : {
-    "TITULO": "Titulo de prueba"
+  "HOME" : {
+    "CREATE": "Crear Heroe",
+    "TITLE": "Listado de Super Heroes",
+    "MESSAGE": "No se encontraron resultados con el nombre: "
+  },
+  "MODAL": {
+    "NAME": "Nombre",
+    "HEIGTH": "Altura",
+    "WEIGHT": "Peso",
+    "RACE": "Raza",
+    "IMG": "Image",
+    "GENDER": "Género",
+    "FULL_NAME": "Nombre completo",
+    "PLACE_OF_BIRTH": "Lugar de nacimiento",
+    "ALIASES": "Alias",
+    "ALIGNMENT": "Bando",
+    "FIRST_APPEARANCE": "Primera aparición",
+    "PUBLISHER": "Editorial",
+    "COMBAT": "Combate",
+    "DURABILITY": "Durabilidad",
+    "INTELLIGENCE": "Inteligencia",
+    "POWER": "Poder",
+    "SPEED": "Velocidad",
+    "STRENGTH": "Fuerza"
+  },
+  "SIN_INFO": "Sin informacion.",
+  "SAVE": "Guardar",
+  "CANCEL": "Cancelar",
+  "EDIT": {
+    "CREATE": "Crear un nuevo super heroe",
+    "UPDATE": "Modificar un super heroe",
+    "ERRORS": {
+      "NAME_REQUIRED": "El nombre es requerido",
+      "GENDER_REQUIRED": "El genero es requerido",
+      "HEIGTH_REQUIRED": "La altura es requerida",
+      "WEIGHT_REQUIRED": "El peso es requerido",
+      "RACE_REQUIRED": "La raza es requerida",
+      "ALIGNMENT_REQUIRED": "El bando es requerido",
+      "FULL_NAME_REQUIRED": "El nombre completo es requerido",
+      "PUBLISHER_REQUIRED": "La editorial es requerida",
+      "COMBAT_REQUIRED": "El nivel de combate es requerido",
+      "DURABILITY_REQUIRED": "El nivel de resistencia es requerido",
+      "INTELLIGENCE_REQUIRED": "El nivel de inteligencia es requerido",
+      "POWER_REQUIRED": "El nivel de poder es requerido",
+      "SPEED_REQUIRED": "El nivel de velocidad es requerido",
+      "STRENGTH_REQUIRED": "El nivel de fuerza es requerido"
+    }
+  },
+  "NO_IMAGE": "Sin imagen disponible",
+  "TABLE": {
+    "COLUMNS": {
+      "IMAGE": "Foto",
+      "NAME": "Nombre"
+    },
+    "OPTIONS": {
+      "EDIT": "Editar heroe",
+      "DELETE": "Eliminar heroe"
+    }
+  },
+  "FINDER": {
+    "LABEL": "Buscar por nombre",
+    "PLACEHOLDER": "Ingrese un nombre..."
+  },
+  "ALERTS": {
+    "MESSAGES": {
+      "DELETE": {
+        "TITLE": "Eliminar Super Heroe",
+        "QUESTION": "¿Seguro que desea borrar el super heroe",
+        "SUCCESS": {
+          "OK": "¡Eliminado!",
+          "MESSAGE": "Se borro correctamente el super heroe"
+        }
+      },
+      "BTN": {
+        "CONFIRM": "Confirmar"
+      },
+      "OK": {
+        "TITLE": "¡Confirmado!",
+        "TEXT_UPDATE": "Se modifico con éxito el heroe",
+        "TEXT_CREATE": "Se creo con éxito el heroe"
+      },
+      "ERROR":{
+        "TITLE": "Upps... Hubo un error",
+        "TEXT": "Lo sentimos, hubo un error inesperado"
+      }
+
+    }
   }
+
 }
