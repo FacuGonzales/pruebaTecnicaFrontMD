@@ -2,11 +2,11 @@
   <div class="content__header" mat-dialog-title>
     <div class="content__header--image">
       <ng-container *ngIf="hero?.images; else noData">
-        <img ngif src="{{ hero?.images?.sm }}" alt="super-hero" class="img">
+        <img src="{{ hero?.images?.sm }}" alt="super-hero" class="img">
       </ng-container>
 
       <ng-template #noData>
-        <p>Sin imagen cargada</p>
+        <p>{{ 'NO_IMAGE' | translate }}</p>
       </ng-template>
     </div>
 
