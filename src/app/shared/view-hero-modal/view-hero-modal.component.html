@@ -11,11 +11,11 @@
       </div>
 
       <div class="heigth">
-        <p>{{ 'MODAL.HEIGTH' | translate }}: {{ hero?.appearance?.height![0] ||  '-' }}</p>
+        <p>{{ 'MODAL.HEIGTH' | translate }}: {{ hero?.appearance?.height ||  '-' }}</p>
       </div>
 
       <div class="weight">
-        <p>{{ 'MODAL.WEIGHT' | translate }}: {{hero?.appearance?.weight![0] || '-' }}</p>
+        <p>{{ 'MODAL.WEIGHT' | translate }}: {{hero?.appearance?.weight || '-' }}</p>
       </div>
 
       <div class="race">
@@ -34,12 +34,6 @@
       <p class="data">{{ 'MODAL.FULL_NAME' | translate }}: {{hero?.biography?.fullName || '-' }}</p>
 
       <p class="data">{{ 'MODAL.PLACE_OF_BIRTH' | translate }}: {{hero?.biography?.placeOfBirth || '-'}}</p>
-
-      <p class="data">{{ 'MODAL.ALIASES' | translate }}:
-        <ng-container *ngFor="let data of hero?.biography?.aliases">
-          {{data || '-' }},
-        </ng-container>
-      </p>
 
       <p class="data">{{ 'MODAL.ALIGNMENT' | translate }}: {{hero?.biography?.alignment || '-' }}</p>
 
