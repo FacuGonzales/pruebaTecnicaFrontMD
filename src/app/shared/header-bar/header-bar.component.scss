@@ -1,4 +1,23 @@
+@import "../../../assets/colors/colors.scss";
+
 .header-bar {
-  background-color: aqua;
+  align-items: center;
+  background-color: $secondary-color;
+  color: $white;
+  display: flex;
+  height: 10vh;
+  justify-content: center;
   width: 100%;
+
+  &--title {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 780px) {
+  .header-bar {
+    &--title {
+      font-size: 1em;
+    }
+  }
 }
