@@ -1,33 +1,48 @@
-.loader {
-  animation: rotation 1s linear infinite;
-  border: 2px solid #569cca;
-  border-radius: 50%;
-  box-sizing: border-box;
-  display: inline-block;
-  height: 48px;
-  position: relative;
-  width: 48px;
-}
+@import "../../../assets/colors/colors.scss";
 
-.loader::after,
-.loader::before {
-  background: #013086;
-  border-radius: 50%;
-  box-sizing: border-box;
-  content: '';
-  height: 6px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 6px;
-  transform: translate(150%, 150%);
-}
-.loader::before {
+.content {
+  align-items: center;
+  background-color: $tertiary-color;
   bottom: 0;
-  left: auto;
-  top: auto;
-  right: 0;
-  transform: translate(-150%, -150%);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+
+  &__loader {
+    animation: rotation 1s linear infinite;
+    border: 2px solid $secondary-color;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 250px;
+    position: relative;
+    width: 250px;
+  }
+
+  &__loader::after,
+  &__loader::before {
+    background: $primary-color;
+    border-radius: 50%;
+    box-sizing: border-box;
+    content: '';
+    height: 25px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 25px;
+    transform: translate(150%, 150%);
+  }
+
+  &__loader::before {
+    bottom: 0;
+    left: auto;
+    top: auto;
+    right: 0;
+    transform: translate(-150%, -150%);
+  }
 }
 
 @keyframes rotation {
