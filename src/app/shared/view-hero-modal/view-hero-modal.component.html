@@ -1,0 +1,69 @@
+<div class="content">
+  <div class="content__header" mat-dialog-title>
+    <div class="content__header--image">
+      <img src="{{hero?.images?.sm}}" alt="hero" class="img">
+    </div>
+
+    <div class="content__header--data">
+
+      <div class="name">
+        <p>{{hero?.name}}</p>
+      </div>
+
+      <div class="heigth">
+        <p>{{ 'MODAL.HEIGTH' | translate }}: {{ hero?.appearance?.height![0] ||  '-' }}</p>
+      </div>
+
+      <div class="weight">
+        <p>{{ 'MODAL.WEIGHT' | translate }}: {{hero?.appearance?.weight![0] || '-' }}</p>
+      </div>
+
+      <div class="race">
+        <p>{{ 'MODAL.RACE' | translate }}: {{hero?.appearance?.race || '-' }}</p>
+      </div>
+
+      <div class="gender">
+        <p>{{ 'MODAL.GENDER' | translate }}: {{hero?.appearance?.gender || '-' }}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <mat-dialog-content class="content__info">
+    <div class="content__info--biography">
+      <p class="data">{{ 'MODAL.FULL_NAME' | translate }}: {{hero?.biography?.fullName || '-' }}</p>
+
+      <p class="data">{{ 'MODAL.PLACE_OF_BIRTH' | translate }}: {{hero?.biography?.placeOfBirth || '-'}}</p>
+
+      <p class="data">{{ 'MODAL.ALIASES' | translate }}:
+        <ng-container *ngFor="let data of hero?.biography?.aliases">
+          {{data || '-' }},
+        </ng-container>
+      </p>
+
+      <p class="data">{{ 'MODAL.ALIGNMENT' | translate }}: {{hero?.biography?.alignment || '-' }}</p>
+
+      <p class="data">{{ 'MODAL.FIRST_APPEARANCE' | translate }}: {{hero?.biography?.firstAppearance || '-' }}</p>
+
+      <p class="data">{{ 'MODAL.PUBLISHER' | translate }}: {{hero?.biography?.publisher || '-' }}</p>
+    </div>
+
+    <div class="content__info--powerstats">
+      <p>{{ 'MODAL.COMBAT' | translate }}: {{ hero?.powerstats?.combat || 0 }}</p>
+
+      <p>{{ 'MODAL.DURABILITY' | translate }}: {{hero?.powerstats?.durability || 0 }}</p>
+
+      <p>{{ 'MODAL.INTELLIGENCE' | translate }}: {{hero?.powerstats?.intelligence || 0 }}</p>
+
+      <p>{{ 'MODAL.POWER' | translate }}: {{hero?.powerstats?.power || 0 }}</p>
+
+      <p>{{ 'MODAL.SPEED' | translate }}: {{hero?.powerstats?.speed || 0 }}</p>
+
+      <p>{{ 'MODAL.STRENGTH' | translate }}: {{hero?.powerstats?.strength || 0 }}</p>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="close()">Close</button>
+  </mat-dialog-actions>
+</div>
