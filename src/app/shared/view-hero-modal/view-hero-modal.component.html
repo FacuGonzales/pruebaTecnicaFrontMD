@@ -1,7 +1,13 @@
 <div class="content">
   <div class="content__header" mat-dialog-title>
     <div class="content__header--image">
-      <img src="{{hero?.images?.sm}}" alt="hero" class="img">
+      <ng-container *ngIf="hero?.images; else noData">
+        <img ngif src="{{ hero?.images?.sm }}" alt="super-hero" class="img">
+      </ng-container>
+
+      <ng-template #noData>
+        <p>Sin imagen cargada</p>
+      </ng-template>
     </div>
 
     <div class="content__header--data">
@@ -43,17 +49,29 @@
     </div>
 
     <div class="content__info--powerstats">
-      <p>{{ 'MODAL.COMBAT' | translate }}: {{ hero?.powerstats?.combat || 0 }}</p>
+      <div>
+        <p>{{ 'MODAL.COMBAT' | translate }}: {{ hero?.powerstats?.combat || 0 }}</p>
+      </div>
 
-      <p>{{ 'MODAL.DURABILITY' | translate }}: {{hero?.powerstats?.durability || 0 }}</p>
+      <div>
+        <p>{{ 'MODAL.DURABILITY' | translate }}: {{hero?.powerstats?.durability || 0 }}</p>
+      </div>
 
-      <p>{{ 'MODAL.INTELLIGENCE' | translate }}: {{hero?.powerstats?.intelligence || 0 }}</p>
+      <div>
+        <p>{{ 'MODAL.INTELLIGENCE' | translate }}: {{hero?.powerstats?.intelligence || 0 }}</p>
+      </div>
 
-      <p>{{ 'MODAL.POWER' | translate }}: {{hero?.powerstats?.power || 0 }}</p>
+      <div>
+        <p>{{ 'MODAL.POWER' | translate }}: {{hero?.powerstats?.power || 0 }}</p>
+      </div>
 
-      <p>{{ 'MODAL.SPEED' | translate }}: {{hero?.powerstats?.speed || 0 }}</p>
+      <div>
+        <p>{{ 'MODAL.SPEED' | translate }}: {{hero?.powerstats?.speed || 0 }}</p>
+      </div>
 
-      <p>{{ 'MODAL.STRENGTH' | translate }}: {{hero?.powerstats?.strength || 0 }}</p>
+      <div>
+        <p>{{ 'MODAL.STRENGTH' | translate }}: {{hero?.powerstats?.strength || 0 }}</p>
+      </div>
     </div>
   </mat-dialog-content>
 
