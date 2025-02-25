@@ -4,6 +4,7 @@ import { map, Observable, of, Subject, tap } from 'rxjs';
 import { SuperHero } from '../models/super-hero-model';
 import { API_CONFIG } from '../api.config';
 import { LocalstorageDataService } from './localstorage-data.service';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class ShDataService {
   private heroesSubject = new Subject<SuperHero[]>();
   heroes$ = this.heroesSubject.asObservable();
 
-  constructor(private http: HttpClient, private localstorageData: LocalstorageDataService) { }
+  constructor(private http: HttpClient,
+              private localstorageData: LocalstorageDataService,
+              private loader: LoaderService,
+             ) { }
 
   private getHeroesForApi(id?: number): Observable<SuperHero[]> {
     let route: string = id ? `${API_CONFIG.baseUrl}/id/${id}.json` : `${API_CONFIG.baseUrl}/all.json`;
@@ -24,6 +28,7 @@ export class ShDataService {
   }
 
   public getHeroes(): Observable<SuperHero[]> {
+    this.loader.viewLoader();
     let heroesLocal: SuperHero[] = this.getHeroesForLocal();
 
     if(heroesLocal.length) {
@@ -31,11 +36,16 @@ export class ShDataService {
         return a.name.localeCompare(b.name);
       })
       this.heroesSubject.next(heroesLocal);
+
+      setTimeout(() => {
+        this.loader.disabledLoader();
+      }, 1500);
       return of(heroesLocal);
     } else {
       return this.getHeroesForApi().pipe(
         tap((heroes) => {
           this.localstorageData.setItem('heroes', heroes);
+          this.loader.disabledLoader();
           this.heroesSubject.next(heroes);
           return heroes;
         })
