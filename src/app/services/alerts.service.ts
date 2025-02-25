@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { SuperHero } from '../models/super-hero-model';
 import { Observable } from 'rxjs';
+import { AlertMessage } from '../models/alert-message';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class AlertsService {
     })
   }
 
-  public success(message: any): Observable<boolean> {
+  public success(message: AlertMessage): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       Swal.fire({
         title: this.translate.instant(message.title),
