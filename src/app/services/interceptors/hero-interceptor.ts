@@ -35,12 +35,11 @@ export function formatHero(data: any): SuperHero {
     },
     appearance: {
       gender: data?.appearance?.gender,
-      height: data?.appearance?.height,
-      weight: data?.appearance?.weight,
+      height: data?.appearance?.height[0],
+      weight: data?.appearance?.weight[0],
       race: data?.appearance?.race
     },
     biography: {
-      aliases: data?.biography?.aliases,
       alignment: data?.biography?.alignment,
       firstAppearance: data?.biography?.firstAppearance,
       fullName: data?.biography?.fullName,
