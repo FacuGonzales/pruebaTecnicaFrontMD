@@ -5,6 +5,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { routes } from './app.routes';
 import { heroInterceptorFn } from './services/interceptors/hero-interceptor';
@@ -25,7 +26,8 @@ export const appConfig: ApplicationConfig = {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient],
         }
-      })
+      }),
+      [SweetAlert2Module.forRoot()]
     ),
     provideHttpClient(
       withInterceptors([heroInterceptorFn])
