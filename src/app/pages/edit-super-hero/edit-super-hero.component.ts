@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderBarComponent } from '../../shared/header-bar/header-bar.component';
 import { CommonModule } from '@angular/common';
 import { FormComponent } from '../../shared/form/form.component';
@@ -17,7 +17,7 @@ import { ROUTES_CONST } from '../../constants/routes.constants';
   templateUrl: './edit-super-hero.component.html',
   styleUrl: './edit-super-hero.component.scss'
 })
-export class EditSuperHeroComponent implements OnDestroy {
+export class EditSuperHeroComponent implements OnInit, OnDestroy {
   public id: number = 0;
   public heroEdit!: SuperHero;
   public title: string = '';
@@ -28,22 +28,33 @@ export class EditSuperHeroComponent implements OnDestroy {
   constructor(private superHeroData: ShDataService,
               private router: Router,
               private activateRoute: ActivatedRoute,
-              private alert: AlertsService) {
-    this.activateRoute.url.subscribe(url => {
-      let _route = url.join('/');
-      this.isNewHero = _route === ROUTES_CONST.CREATE;
-      this.title = this.isNewHero ? 'EDIT.CREATE' : 'EDIT.UPDATE';
-    })
+              private alert: AlertsService) { }
 
-    this.activateRoute.params.subscribe((params: any) => {
-      this.id = +params['id'];
-      if(this.id) this.getHeroById();
-    })
+  ngOnInit(): void {
+    this.getRoute()
+    this.getParams();
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  public getRoute(): void {
+    this.activateRoute.url.subscribe(url => {
+      let _route = url.join('/');
+      this.isNewHero = _route === ROUTES_CONST.CREATE;
+      this.title = this.isNewHero ? 'EDIT.CREATE' : 'EDIT.UPDATE';
+    });
+  }
+
+  public getParams(): void {
+    this.activateRoute.params
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((params: any) => {
+      this.id = +params['id'];
+      if(this.id) this.getHeroById();
+    })
   }
 
   public getHeroById(): void {
@@ -54,7 +65,6 @@ export class EditSuperHeroComponent implements OnDestroy {
       }
     })
   }
-
 
   public cancel(back: boolean): void {
     this.router.navigate([ROUTES_CONST.HOME]);
@@ -68,13 +78,23 @@ export class EditSuperHeroComponent implements OnDestroy {
       : 'ALERTS.MESSAGES.OK.TEXT_UPDATE'
     }
 
-    if(this.isNewHero) {
-      this.superHeroData.createHero(hero);
-    } else {
-      this.superHeroData.updateDataHero(hero);
-    }
+    return this.isNewHero ? this.createHero(hero, message) : this.updateHero(hero, message)
+  }
 
-    this.confirm(message);
+  public createHero(hero: SuperHero, message: AlertMessage): void {
+    this.superHeroData.createHero(hero)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe( resp => {
+      if(resp) this.confirm(message);
+    });
+  }
+
+  public updateHero(hero: SuperHero, message: AlertMessage): void {
+    this.superHeroData.updateDataHero(hero)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe( resp => {
+      if(resp) this.confirm(message);
+    });
   }
 
   public confirm(message: AlertMessage): void {
