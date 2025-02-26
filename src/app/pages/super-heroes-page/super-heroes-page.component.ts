@@ -53,7 +53,7 @@ export class SuperHeroesPageComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  private getHeroes(): void {
+  public getHeroes(): void {
     this.superHeroData.getHeroes()
     .pipe(takeUntil(this.destroy$))
     .subscribe({
@@ -103,18 +103,26 @@ export class SuperHeroesPageComponent implements OnInit, OnDestroy {
   }
 
   public confirmDelete(id: number) {
-    this.superHeroData.deleteHero(id);
+    this.superHeroData.deleteHero(id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe( (result: boolean) => this.showAlert(result))
+  }
 
+  public showAlert(state: boolean): void {
     let message: AlertMessage = {
       title: 'ALERTS.MESSAGES.DELETE.SUCCESS.OK',
       text: 'ALERTS.MESSAGES.DELETE.SUCCESS.MESSAGE'
     }
 
-    this.alert.success(message).pipe(takeUntil(this.destroy$))
-    .subscribe((resp: boolean) => {
-      if(resp) {
-        this.getHeroes()
-      }
-    })
+    if(state) {
+      this.alert.success(message).pipe(takeUntil(this.destroy$))
+      .subscribe((resp: boolean) => {
+        if(resp) {
+          return this.getHeroes()
+        }
+      })
+    } else {
+      return this.alert.error();
+    }
   }
 }
