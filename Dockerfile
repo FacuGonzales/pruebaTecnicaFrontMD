@@ -5,10 +5,10 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 # Copia los archivos package.json y package-lock.json (o yarn.lock)
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
 # Instala las dependencias
-RUN npm install
+RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev
 
 # Copia el resto de los archivos de la aplicación
 COPY . .
@@ -21,9 +21,6 @@ FROM nginx:alpine
 
 # Copia los archivos de la aplicación construida desde la etapa anterior
 COPY --from=builder /app/dist/prueba-tecnica-front-md/browser /usr/share/nginx/html
-
-# Copia la configuración de Nginx (opcional)
-COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expone el puerto 80
 EXPOSE 80
