@@ -43,7 +43,7 @@ export class EditSuperHeroComponent implements OnInit, OnDestroy {
   public getRoute(): void {
     this.activateRoute.url.subscribe(url => {
       let _route = url.join('/');
-      this.isNewHero = _route === ROUTES_CONST.CREATE;
+      this.isNewHero = _route === 'create';
       this.title = this.isNewHero ? 'EDIT.CREATE' : 'EDIT.UPDATE';
     });
   }
