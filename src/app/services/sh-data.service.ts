@@ -94,12 +94,14 @@ export class ShDataService {
     this.heroesSubject.next(heroesLocal);
   }
 
-  public deleteHero(id: number): void {
+  public deleteHero(id: number): Observable<boolean> {
     const heroesLocal: SuperHero[] = this.getHeroesForLocal();
     const heroesUpdateList: SuperHero[] = heroesLocal.filter(h => h.id !== id);
 
     this.localstorageData.setItem('heroes', heroesUpdateList);
     this.heroesSubject.next(heroesUpdateList);
+
+    return of(true)
   }
 
   public filterByName(name: string): Observable<SuperHero[]> {
