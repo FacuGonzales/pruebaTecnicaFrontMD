@@ -25,10 +25,9 @@ describe('SuperHeroesPageComponent', () => {
     alertsService = jasmine.createSpyObj('AlertsService', ['questionModal', 'success', 'error']);
     router = jasmine.createSpyObj('Router', ['navigate']);
 
-    // *** KEY CHANGES HERE ***
-    shDataService.getHeroes.and.returnValue(of(MOCK_SUPER_HEROES)); // Return an Observable!
-    shDataService.filterByName.and.returnValue(of(MOCK_SUPER_HEROES)); // Return an Observable!
-    shDataService.deleteHero.and.returnValue(of(true)); // Return an Observable!
+    shDataService.getHeroes.and.returnValue(of(MOCK_SUPER_HEROES));
+    shDataService.filterByName.and.returnValue(of(MOCK_SUPER_HEROES));
+    shDataService.deleteHero.and.returnValue(of(true));
     modalService.openViewHeroModal.and.returnValue(of(true));
     alertsService.questionModal.and.returnValue(of(true));
     alertsService.success.and.returnValue(of(true));
@@ -47,7 +46,7 @@ describe('SuperHeroesPageComponent', () => {
 
     fixture = TestBed.createComponent(SuperHeroesPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // Detect changes to trigger ngOnInit
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -139,7 +138,7 @@ describe('SuperHeroesPageComponent', () => {
   });
 
 
-  it('should clean up on destroy', () => {
+  it('should clean and destroy', () => {
     spyOn(component['destroy$'], 'next');
     spyOn(component['destroy$'], 'complete');
     component.ngOnDestroy();
