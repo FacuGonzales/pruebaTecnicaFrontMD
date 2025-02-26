@@ -8,11 +8,11 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 class MatDialogRefStub {
   close() {
-    return of(true); // Simula el comportamiento de cierre del modal
+    return of(true);
   }
 
   afterClosed() {
-    return of(true); // Simula el observable que se emite cuando se cierra el modal
+    return of(true);
   }
 }
 

@@ -29,6 +29,9 @@ export class FormComponent implements OnChanges {
   @Output() cancelForm = new EventEmitter();
   @Output() saveForm = new EventEmitter();
 
+  private paternAlphaNumeric = /^[a-zA-Z0-9\s]*$/;
+  private paternOnlyLetters = /^[a-zA-Z\s]*$/;
+
   constructor(private fb: FormBuilder, private translate: TranslateService, private heroFormat: HeroFormFormatService) {
     this.translate.setDefaultLang('es');
     this.translate.use('es');
@@ -46,21 +49,21 @@ export class FormComponent implements OnChanges {
     this.form = this.fb.group({
       id: [ null],
       name: [ '', Validators.required],
-      gender: ['', Validators.required],
-      height: ['', Validators.required],
-      weight: ['', Validators.required],
-      race: ['', Validators.required],
-      alignment: ['', Validators.required],
-      firstAppearance: [''],
-      fullName: ['', Validators.required],
-      placeOfBirth: [''],
-      publisher: ['', Validators.required],
-      combat: [0, Validators.required],
-      durability: [0, Validators.required],
-      intelligence: [0, Validators.required],
-      power: [0, Validators.required],
-      speed: [0, Validators.required],
-      strength: [0, Validators.required],
+      gender: ['',[ Validators.required, Validators.pattern(this.paternOnlyLetters)]],
+      height: ['', [ Validators.required,  Validators.pattern(this.paternAlphaNumeric) ]],
+      weight: ['', [ Validators.required,  Validators.pattern(this.paternAlphaNumeric) ]],
+      race: ['', [ Validators.required, Validators.pattern(this.paternOnlyLetters) ]],
+      alignment: ['', [ Validators.required, Validators.pattern(this.paternOnlyLetters) ]],
+      firstAppearance: ['', Validators.pattern(this.paternAlphaNumeric)],
+      fullName: ['', [ Validators.required, Validators.pattern(this.paternOnlyLetters) ]],
+      placeOfBirth: ['',  Validators.pattern(this.paternAlphaNumeric)],
+      publisher: ['', [ Validators.required,  Validators.pattern(this.paternAlphaNumeric) ]],
+      combat: [0,[ Validators.required, Validators.min(1)]],
+      durability: [0,[ Validators.required, Validators.min(1)]],
+      intelligence: [0,[ Validators.required, Validators.min(1)]],
+      power: [0,[ Validators.required, Validators.min(1)]],
+      speed: [0,[ Validators.required, Validators.min(1)]],
+      strength: [0,[ Validators.required, Validators.min(1)]],
     })
   }
 

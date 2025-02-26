@@ -29,6 +29,10 @@
         <div class="content-error" *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched">
           {{'EDIT.ERRORS.GENDER_REQUIRED' | translate}}
         </div>
+
+        <div class="content-error" *ngIf="form.get('gender')?.hasError('pattern') && form.get('gender')?.touched">
+          {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
+        </div>
       </div>
 
       <div class="content-form__appearance--height">
@@ -42,6 +46,10 @@
 
         <div class="content-error" *ngIf="form.get('height')?.invalid && form.get('height')?.touched">
           {{'EDIT.ERRORS.HEIGTH_REQUIRED' | translate}}
+        </div>
+
+        <div class="content-error" *ngIf="form.get('height')?.hasError('pattern') && form.get('height')?.touched">
+          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
         </div>
       </div>
 
@@ -57,6 +65,10 @@
         <div class="content-error" *ngIf="form.get('weight')?.invalid && form.get('weight')?.touched">
           {{'EDIT.ERRORS.WEIGHT_REQUIRED' | translate}}
         </div>
+
+        <div class="content-error" *ngIf="form.get('weight')?.hasError('pattern') && form.get('weight')?.touched">
+          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
+        </div>
       </div>
 
       <div class="content-form__appearance--race">
@@ -70,6 +82,10 @@
 
         <div class="content-error" *ngIf="form.get('race')?.invalid && form.get('race')?.touched">
           {{'EDIT.ERRORS.RACE_REQUIRED' | translate}}
+        </div>
+
+        <div class="content-error" *ngIf="form.get('race')?.hasError('pattern') && form.get('race')?.touched">
+          {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
         </div>
       </div>
 
@@ -88,6 +104,10 @@
         <div class="content-error" *ngIf="form.get('alignment')?.invalid && form.get('alignment')?.touched">
           {{'EDIT.ERRORS.ALIGNMENT_REQUIRED' | translate}}
         </div>
+
+        <div class="content-error" *ngIf="form.get('alignment')?.hasError('pattern') && form.get('alignment')?.touched">
+          {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
+        </div>
       </div>
 
       <div class="content-form__biography--firstAppearance">
@@ -98,6 +118,10 @@
                 formControlName="firstAppearance"
                 placeholder="{{'MODAL.FIRST_APPEARANCE' | translate}}">
         </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('firstAppearance')?.hasError('pattern') && form.get('firstAppearance')?.touched">
+          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
+        </div>
       </div>
 
       <div class="content-form__biography--fullName">
@@ -112,6 +136,10 @@
         <div class="content-error" *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched">
           {{'EDIT.ERRORS.FULL_NAME_REQUIRED' | translate}}
         </div>
+
+        <div class="content-error" *ngIf="form.get('fullName')?.hasError('pattern') && form.get('fullName')?.touched">
+          {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
+        </div>
       </div>
 
       <div class="content-form__biography--placeOfBirth">
@@ -122,6 +150,10 @@
                 formControlName="placeOfBirth"
                 placeholder="{{'MODAL.PLACE_OF_BIRTH' | translate}}">
         </mat-form-field>
+
+        <div class="content-error" *ngIf="form.get('placeOfBirth')?.hasError('pattern') && form.get('placeOfBirth')?.touched">
+          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
+        </div>
       </div>
 
       <div class="content-form__biography--publisher">
@@ -135,6 +167,10 @@
 
         <div class="content-error" *ngIf="form.get('publisher')?.invalid && form.get('publisher')?.touched">
           {{'EDIT.ERRORS.PUBLISHER_REQUIRED' | translate}}
+        </div>
+
+        <div class="content-error" *ngIf="form.get('publisher')?.hasError('pattern') && form.get('publisher')?.touched">
+          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
         </div>
       </div>
     </div>
@@ -152,6 +188,10 @@
         <div class="content-error" *ngIf="form.get('combat')?.invalid && form.get('combat')?.touched">
           {{'EDIT.ERRORS.COMBAT_REQUIRED' | translate}}
         </div>
+
+        <div class="content-error" *ngIf="form.get('combat')?.hasError('min') && form.get('combat')?.touched">
+          {{'EDIT.ERRORS.MIN_1' | translate}}
+        </div>
       </div>
 
       <div class="content-form__powerstats--durability">
@@ -165,6 +205,10 @@
 
         <div class="content-error" *ngIf="form.get('durability')?.invalid && form.get('durability')?.touched">
           {{'EDIT.ERRORS.DURABILITY_REQUIRED' | translate}}
+        </div>
+
+        <div class="content-error" *ngIf="form.get('durability')?.hasError('min') && form.get('durability')?.touched">
+          {{'EDIT.ERRORS.MIN_1' | translate}}
         </div>
       </div>
 
@@ -180,6 +224,10 @@
         <div class="content-error" *ngIf="form.get('intelligence')?.invalid && form.get('intelligence')?.touched">
           {{'EDIT.ERRORS.INTELLIGENCE_REQUIRED' | translate}}
         </div>
+
+        <div class="content-error" *ngIf="form.get('intelligence')?.hasError('min') && form.get('intelligence')?.touched">
+          {{'EDIT.ERRORS.MIN_1' | translate}}
+        </div>
       </div>
 
       <div class="content-form__powerstats--power">
@@ -193,6 +241,10 @@
 
         <div class="content-error" *ngIf="form.get('power')?.invalid && form.get('power')?.touched">
           {{'EDIT.ERRORS.POWER_REQUIRED' | translate}}
+        </div>
+
+        <div class="content-error" *ngIf="form.get('power')?.hasError('min') && form.get('power')?.touched">
+          {{'EDIT.ERRORS.MIN_1' | translate}}
         </div>
       </div>
 
@@ -208,6 +260,10 @@
         <div class="content-error" *ngIf="form.get('speed')?.invalid && form.get('speed')?.touched">
           {{'EDIT.ERRORS.SPEED_REQUIRED' | translate}}
         </div>
+
+        <div class="content-error" *ngIf="form.get('speed')?.hasError('min') && form.get('speed')?.touched">
+          {{'EDIT.ERRORS.MIN_1' | translate}}
+        </div>
       </div>
 
       <div class="content-form__powerstats--strength">
@@ -221,6 +277,10 @@
 
         <div class="content-error" *ngIf="form.get('strength')?.invalid && form.get('strength')?.touched">
           {{'EDIT.ERRORS.STRENGTH_REQUIRED' | translate}}
+        </div>
+
+        <div class="content-error" *ngIf="form.get('strength')?.hasError('min') && form.get('strength')?.touched">
+          {{'EDIT.ERRORS.MIN_1' | translate}}
         </div>
       </div>
     </div>
