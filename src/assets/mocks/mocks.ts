@@ -1,3 +1,4 @@
+import { AlertMessage } from "../../app/models/alert-message";
 import { SuperHero } from "../../app/models/super-hero-model";
 
 export const MOCK_SUPER_HEROES: SuperHero[] = [
@@ -64,3 +65,45 @@ export const MOCK_SUPER_HEROES: SuperHero[] = [
     }
   }
 ]
+
+export const MOCK_CREATE_HERO = {
+  id: 1,
+  name: "Chapulin",
+  powerstats: {
+    intelligence: 88,
+    strength: 11,
+    speed: 33,
+    durability: 28,
+    power: 36,
+    combat: 100
+  },
+  appearance: {
+    gender: "Male",
+    race: "Human",
+    height: "5'10",
+    weight: "175 lb",
+  },
+  biography: {
+    fullName: "Chespirito",
+    placeOfBirth: "-",
+    firstAppearance: "-",
+    publisher: "Nightwing",
+    alignment: "good"
+  },
+  images: {
+    xs: "",
+    sm: "",
+    md: "",
+    lg: ""
+  }
+}
+
+export const MOCK_MESSAGE_CREATE: AlertMessage = {
+  title: 'ALERTS.MESSAGES.OK.TITLE',
+  text: 'ALERTS.MESSAGES.OK.TEXT_CREATE'
+};
+
+export const MOCK_MESSAGE_UPDATE: AlertMessage = {
+  title: 'ALERTS.MESSAGES.OK.TITLE',
+  text: 'ALERTS.MESSAGES.OK.TEXT_UPDATE'
+}
