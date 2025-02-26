@@ -44,7 +44,10 @@
       "INTELLIGENCE_REQUIRED": "El nivel de inteligencia es requerido",
       "POWER_REQUIRED": "El nivel de poder es requerido",
       "SPEED_REQUIRED": "El nivel de velocidad es requerido",
-      "STRENGTH_REQUIRED": "El nivel de fuerza es requerido"
+      "STRENGTH_REQUIRED": "El nivel de fuerza es requerido",
+      "ONLY_LETTERS": "Solo se permiten letras",
+      "ALPHANUMERIC": "Solo se permiten letras y números",
+      "MIN_1": "Debe ser minimo 1"
     }
   },
   "NO_IMAGE": "Sin imagen disponible",
