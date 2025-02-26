@@ -74,15 +74,17 @@ export class ShDataService {
     }
   }
 
-  public createHero(hero: SuperHero): void {
+  public createHero(hero: SuperHero): Observable<boolean> {
     const heroesLocal: SuperHero[] = this.getHeroesForLocal();
     heroesLocal.push(hero);
     this.localstorageData.setItem('heroes', heroesLocal);
 
     this.heroesSubject.next(heroesLocal);
+
+    return of(true)
   }
 
-  public updateDataHero(hero: SuperHero): void {
+  public updateDataHero(hero: SuperHero): Observable<boolean>  {
     const heroesLocal: SuperHero[] = this.getHeroesForLocal();
     const heroIndex = heroesLocal.findIndex(h => h.id === hero.id);
 
@@ -92,6 +94,8 @@ export class ShDataService {
     this.localstorageData.setItem('heroes', heroesLocal);
 
     this.heroesSubject.next(heroesLocal);
+
+    return of(true)
   }
 
   public deleteHero(id: number): Observable<boolean> {
