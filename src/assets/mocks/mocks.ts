@@ -1,4 +1,5 @@
 import { AlertMessage } from "../../app/models/alert-message";
+import { Images } from "../../app/models/images-model";
 import { SuperHero } from "../../app/models/super-hero-model";
 
 export const MOCK_SUPER_HEROES: SuperHero[] = [
@@ -162,6 +163,64 @@ export const MOCK_NO_EXISTE_HERO = {
     md: "",
     lg: ""
   }
+}
+
+export const MOCK_FORM = {
+  name: 'spiderMan',
+  gender: 'male',
+  height: '178',
+  weight: '75',
+  race: 'human',
+  alignment: 'good',
+  firstAppearance: '1962',
+  fullName: 'peter parker',
+  placeOfBirth: 'new york',
+  publisher: 'marvel',
+  combat: 80,
+  durability: 70,
+  intelligence: 90,
+  power: 85,
+  speed: 75,
+  strength: 80,
+}
+
+export const MOCK_IMAGES: Images = {
+  xs: 'xs.jpg',
+  sm: 'sm.jpg',
+  md: 'md.jpg',
+  lg: 'lg.jpg',
+};
+
+export const MOCK_HERO: SuperHero = {
+  id: 201,
+  name: 'Spiderman',
+  appearance: {
+    gender: 'Male',
+    height: '178',
+    weight: '75',
+    race: 'human',
+  },
+  biography: {
+    alignment: 'Good',
+    firstAppearance: '1962',
+    fullName: 'Peter parker',
+    placeOfBirth: 'New york',
+    publisher: 'marvel',
+  },
+  powerstats: {
+    combat: 80,
+    durability: 70,
+    intelligence: 90,
+    power: 85,
+    speed: 75,
+    strength: 80,
+  },
+  images: {
+    xs: 'xs.jpg',
+    sm: 'sm.jpg',
+    md: 'md.jpg',
+    lg: 'lg.jpg',
+  },
 }
 
 export const MOCK_MESSAGE_CREATE: AlertMessage = {
