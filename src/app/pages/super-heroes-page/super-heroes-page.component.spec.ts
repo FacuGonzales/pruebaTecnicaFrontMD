@@ -132,14 +132,10 @@ describe('SuperHeroesPageComponent', () => {
   });
 
 
-  it('should handle delete error', () => {
-    shDataService.getHeroes.and.returnValue(of(MOCK_SUPER_HEROES));
-    component.valueFilter = '';
-    component.ngOnInit();
-    fixture.detectChanges();
+  it('should enter because of the error', () => {
+    component.showAlert(false);
 
-    expect(shDataService.getHeroes).toHaveBeenCalled();
-    expect(component.superHeroesList).toEqual(MOCK_SUPER_HEROES);
+    expect(alertsService.error).toHaveBeenCalled();
   });
 
 
