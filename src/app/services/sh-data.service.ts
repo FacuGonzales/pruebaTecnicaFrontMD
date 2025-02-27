@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of, Subject, tap } from 'rxjs';
 import { SuperHero } from '../models/super-hero-model';
-import { API_CONFIG } from '../api.config';
 import { LocalstorageDataService } from './localstorage-data.service';
 import { LoaderService } from './loader.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ import { LoaderService } from './loader.service';
 export class ShDataService {
   private heroesSubject = new Subject<SuperHero[]>();
   heroes$ = this.heroesSubject.asObservable();
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient,
               private localstorageData: LocalstorageDataService,
@@ -19,7 +20,7 @@ export class ShDataService {
              ) { }
 
   private getHeroesForApi(id?: number): Observable<SuperHero[]> {
-    let route: string = id ? `${API_CONFIG.baseUrl}/id/${id}.json` : `${API_CONFIG.baseUrl}/all.json`;
+    let route: string = id ? `${this.apiUrl}/id/${id}.json` : `${this.apiUrl}/all.json`;
     return this.http.get<SuperHero[]>(route);
   }
 

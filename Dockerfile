@@ -15,12 +15,14 @@ RUN echo "Lista de archivos en /app" && ls -alh /app
 
 
 # Instala las dependencias utilizando npm ci (para producción)
-RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev
+RUN npm install
 
 
 # Copia el resto de los archivos de la aplicación
 COPY . .
 
+# Copiar proxy.conf.json si no lo has hecho antes
+COPY proxy.conf.json ./proxy.conf.json
 
 # Construye la aplicación Angular para producción
 RUN npm run build -- --configuration production
