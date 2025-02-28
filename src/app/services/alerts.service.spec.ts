@@ -3,20 +3,20 @@ import { TestBed } from '@angular/core/testing';
 import { AlertsService } from './alerts.service';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
-import { MOCK_MESSAGE_CREATE, MOCK_SUPER_HEROES } from '../../assets/mocks/mocks';
+import { MOCK_MESSAGE_CREATE, MOCK_HEROES_LIST } from '../../assets/mocks/mocks';
 
 describe('AlertsService', () => {
   let service: AlertsService;
-  let translateService: jasmine.SpyObj<TranslateService>;
+  let translate: jasmine.SpyObj<TranslateService>;
 
   beforeEach(() => {
-    translateService = jasmine.createSpyObj('TranslateService', ['setDefaultLang', 'use', 'instant']);
-    translateService.instant.and.callFake((key: string) => key);
+    translate = jasmine.createSpyObj('TranslateService', ['setDefaultLang', 'use', 'instant']);
+    translate.instant.and.callFake((key: string) => key);
 
     TestBed.configureTestingModule({
       providers: [
         AlertsService,
-        { provide: TranslateService, useValue: translateService },
+        { provide: TranslateService, useValue: translate },
       ],
     });
     service = TestBed.inject(AlertsService);
@@ -26,7 +26,7 @@ describe('AlertsService', () => {
   it('should return true when swal confirms deletion', (done) => {
     spyOn(Swal, 'fire').and.returnValue(Promise.resolve({ isConfirmed: true } as any));
 
-    service.questionModal(MOCK_SUPER_HEROES[0]).subscribe((result) => {
+    service.questionModal(MOCK_HEROES_LIST[0]).subscribe((result) => {
       expect(result).toBeTrue();
       expect(Swal.fire).toHaveBeenCalled();
       done();
@@ -37,7 +37,7 @@ describe('AlertsService', () => {
   it('should return false when swal cancels deletion', (done) => {
     spyOn(Swal, 'fire').and.returnValue(Promise.resolve({ isConfirmed: false } as any));
 
-    service.questionModal(MOCK_SUPER_HEROES[0]).subscribe((result) => {
+    service.questionModal(MOCK_HEROES_LIST[0]).subscribe((result) => {
       expect(result).toBeFalse();
       expect(Swal.fire).toHaveBeenCalled();
       done();

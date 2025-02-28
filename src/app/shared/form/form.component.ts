@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { SuperHero } from '../../models/super-hero-model';
 import { HeroFormFormatService } from '../../services/hero-form-format.service';
+import { TextUppercaseTransformDirective } from '../../directives/text-uppercase-transform.directive';
 
 @Component({
   selector: 'app-form',
@@ -18,6 +19,7 @@ import { HeroFormFormatService } from '../../services/hero-form-format.service';
             MatInputModule,
             MatFormFieldModule,
             MatButtonModule,
+            TextUppercaseTransformDirective
           ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
@@ -29,7 +31,7 @@ export class FormComponent implements OnChanges {
   @Output() cancelForm = new EventEmitter();
   @Output() saveForm = new EventEmitter();
 
-  private paternAlphaNumeric = /^[a-zA-Z0-9\s]*$/;
+  private paternOnlyNumbers = /^[0-9,\'\.]*$/;
   private paternOnlyLetters = /^[a-zA-Z\s]*$/;
 
   constructor(private fb: FormBuilder, private translate: TranslateService, private heroFormat: HeroFormFormatService) {
@@ -47,23 +49,23 @@ export class FormComponent implements OnChanges {
 
   public initForm(): void {
     this.form = this.fb.group({
-      id: [ null],
+      id: [ null ],
       name: [ '', Validators.required],
       gender: ['',[ Validators.required, Validators.pattern(this.paternOnlyLetters)]],
-      height: ['', [ Validators.required,  Validators.pattern(this.paternAlphaNumeric) ]],
-      weight: ['', [ Validators.required,  Validators.pattern(this.paternAlphaNumeric) ]],
+      height: ['', [ Validators.required,  Validators.pattern(this.paternOnlyNumbers) ]],
+      weight: ['', Validators.required],
       race: ['', [ Validators.required, Validators.pattern(this.paternOnlyLetters) ]],
       alignment: ['', [ Validators.required, Validators.pattern(this.paternOnlyLetters) ]],
-      firstAppearance: ['', Validators.pattern(this.paternAlphaNumeric)],
+      firstAppearance: [''],
       fullName: ['', [ Validators.required, Validators.pattern(this.paternOnlyLetters) ]],
-      placeOfBirth: ['',  Validators.pattern(this.paternAlphaNumeric)],
-      publisher: ['', [ Validators.required,  Validators.pattern(this.paternAlphaNumeric) ]],
-      combat: [0,[ Validators.required, Validators.min(1)]],
-      durability: [0,[ Validators.required, Validators.min(1)]],
-      intelligence: [0,[ Validators.required, Validators.min(1)]],
-      power: [0,[ Validators.required, Validators.min(1)]],
-      speed: [0,[ Validators.required, Validators.min(1)]],
-      strength: [0,[ Validators.required, Validators.min(1)]],
+      placeOfBirth: [''],
+      publisher: [''],
+      combat: ['',[ Validators.required, Validators.min(1)]],
+      durability: ['',[ Validators.required, Validators.min(1)]],
+      intelligence: ['',[ Validators.required, Validators.min(1)]],
+      power: ['',[ Validators.required, Validators.min(1)]],
+      speed: ['',[ Validators.required, Validators.min(1)]],
+      strength: ['',[ Validators.required, Validators.min(1)]],
     })
   }
 

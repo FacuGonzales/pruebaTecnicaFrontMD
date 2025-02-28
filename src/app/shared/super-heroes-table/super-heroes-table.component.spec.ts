@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MOCK_SUPER_HEROES } from '../../../assets/mocks/mocks';
+import { MOCK_HEROES_LIST } from '../../../assets/mocks/mocks';
 
 describe('SuperHeroesTableComponent', () => {
   let component: SuperHeroesTableComponent;
@@ -51,21 +51,21 @@ describe('SuperHeroesTableComponent', () => {
 
 
   it('should update dataSource when superHeroesList input changes', () => {
-    component.superHeroesList = MOCK_SUPER_HEROES;
-    component.ngOnChanges({ superHeroesList: { currentValue: MOCK_SUPER_HEROES, previousValue: [], firstChange: false, isFirstChange: () => false } });
-    expect(component.dataSource.data).toEqual(MOCK_SUPER_HEROES);
+    component.superHeroesList = MOCK_HEROES_LIST;
+    component.ngOnChanges({ superHeroesList: { currentValue: MOCK_HEROES_LIST, previousValue: [], firstChange: false, isFirstChange: () => false } });
+    expect(component.dataSource.data).toEqual(MOCK_HEROES_LIST);
   });
 
 
   it('should update dataSource on ngOnInit', () => {
-    component.superHeroesList = MOCK_SUPER_HEROES;
+    component.superHeroesList = MOCK_HEROES_LIST;
     component.ngOnInit();
-    expect(component.dataSource.data).toEqual(MOCK_SUPER_HEROES);
+    expect(component.dataSource.data).toEqual(MOCK_HEROES_LIST);
   });
 
 
   it('should set paginator to dataSource on ngAfterViewInit', () => {
-    component.superHeroesList = MOCK_SUPER_HEROES;
+    component.superHeroesList = MOCK_HEROES_LIST;
     component.ngOnInit();
     fixture.detectChanges();
     component.ngAfterViewInit();
@@ -75,34 +75,34 @@ describe('SuperHeroesTableComponent', () => {
 
   it('should emit edit event when onEditHero is called', () => {
     const emitSpy = spyOn(component.emitEditHero, 'emit');
-    component.onEditHero(MOCK_SUPER_HEROES[0]);
-    expect(emitSpy).toHaveBeenCalledWith(MOCK_SUPER_HEROES[0]);
+    component.onEditHero(MOCK_HEROES_LIST[0]);
+    expect(emitSpy).toHaveBeenCalledWith(MOCK_HEROES_LIST[0]);
   });
 
 
   it('should emit delete event when onDeleteHero is called', () => {
     const emitSpy = spyOn(component.emitDeleteHero, 'emit');
-    component.onDeleteHero(MOCK_SUPER_HEROES[0]);
-    expect(emitSpy).toHaveBeenCalledWith(MOCK_SUPER_HEROES[0]);
+    component.onDeleteHero(MOCK_HEROES_LIST[0]);
+    expect(emitSpy).toHaveBeenCalledWith(MOCK_HEROES_LIST[0]);
   });
 
 
   it('should emit select event and set selectedHero when viewItem is called', () => {
     const emitSpy = spyOn(component.selectHero, 'emit');
-    component.viewItem(MOCK_SUPER_HEROES[0]);
-    expect(emitSpy).toHaveBeenCalledWith(MOCK_SUPER_HEROES[0]);
-    expect(component.selectedHero).toEqual(MOCK_SUPER_HEROES[0]);
+    component.viewItem(MOCK_HEROES_LIST[0]);
+    expect(emitSpy).toHaveBeenCalledWith(MOCK_HEROES_LIST[0]);
+    expect(component.selectedHero).toEqual(MOCK_HEROES_LIST[0]);
   });
 
 
   it('should render hero names in table rows', () => {
-    component.superHeroesList = MOCK_SUPER_HEROES;
+    component.superHeroesList = MOCK_HEROES_LIST;
     component.ngOnInit();
     fixture.detectChanges();
     const tableRows = fixture.nativeElement.querySelectorAll('mat-row');
     tableRows.forEach((row: any, index: any) => {
       const nameCell = row.querySelector('mat-cell:nth-child(2)');
-      expect(nameCell.textContent.trim()).toBe(MOCK_SUPER_HEROES[index].name);
+      expect(nameCell.textContent.trim()).toBe(MOCK_HEROES_LIST[index].name);
     });
   })
 })

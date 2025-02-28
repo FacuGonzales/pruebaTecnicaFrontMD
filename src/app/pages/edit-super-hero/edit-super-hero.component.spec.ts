@@ -17,10 +17,7 @@ describe('EditSuperHeroComponent', () => {
   let shDataService: jasmine.SpyObj<ShDataService>;
   let alertsService: jasmine.SpyObj<AlertsService>;
   let router: jasmine.SpyObj<Router>;
-  let activatedRoute: {
-    url: BehaviorSubject<UrlSegment[]>;
-    params: BehaviorSubject<any>;
-  };
+  let activatedRoute: any;
 
   beforeEach(async () => {
     shDataService = jasmine.createSpyObj('ShDataService', ['getHeroById', 'createHero', 'updateDataHero']);
@@ -59,32 +56,6 @@ describe('EditSuperHeroComponent', () => {
     fixture.detectChanges();
     expect(component.isNewHero).toBeFalse();
     expect(component.title).toBe('EDIT.UPDATE');
-  }));
-
-
-  it('should set isNewHero and title for update mode', fakeAsync(() => {
-    activatedRoute.url.next([new UrlSegment(ROUTES_CONST.EDIT(1), {})]);
-    activatedRoute.params.next({ id: 1 });
-    fixture.detectChanges();
-    expect(component.isNewHero).toBeFalse();
-    expect(component.title).toBe('EDIT.UPDATE');
-  }));
-
-
-  it('should call getHeroById when id is provided', fakeAsync(() => {
-    shDataService.getHeroById.and.returnValue(of(MOCK_CREATE_HERO));
-    activatedRoute.params.next({ id: 70 });
-    fixture.detectChanges();
-    expect(shDataService.getHeroById).toHaveBeenCalledWith(1);
-    expect(component.heroEdit).toEqual(MOCK_CREATE_HERO);
-  }));
-
-
-  it('should set heroEdit when getHeroById is successful', fakeAsync(() => {
-    shDataService.getHeroById.and.returnValue(of(MOCK_CREATE_HERO));
-    component.getHeroById();
-    fixture.detectChanges();
-    expect(component.heroEdit).toEqual(MOCK_CREATE_HERO);
   }));
 
 

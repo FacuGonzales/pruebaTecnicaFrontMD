@@ -9,7 +9,7 @@ import { ShDataService } from '../../services/sh-data.service';
 import { ModalService } from '../../services/modal.service';
 import { AlertsService } from '../../services/alerts.service';
 import { ROUTES_CONST } from '../../constants/routes.constants';
-import { MOCK_SUPER_HEROES } from '../../../assets/mocks/mocks';
+import { MOCK_HEROES_LIST } from '../../../assets/mocks/mocks';
 
 describe('SuperHeroesPageComponent', () => {
   let component: SuperHeroesPageComponent;
@@ -25,8 +25,8 @@ describe('SuperHeroesPageComponent', () => {
     alertsService = jasmine.createSpyObj('AlertsService', ['questionModal', 'success', 'error']);
     router = jasmine.createSpyObj('Router', ['navigate']);
 
-    shDataService.getHeroes.and.returnValue(of(MOCK_SUPER_HEROES));
-    shDataService.filterByName.and.returnValue(of(MOCK_SUPER_HEROES));
+    shDataService.getHeroes.and.returnValue(of(MOCK_HEROES_LIST));
+    shDataService.filterByName.and.returnValue(of(MOCK_HEROES_LIST));
     shDataService.deleteHero.and.returnValue(of(true));
     modalService.openViewHeroModal.and.returnValue(of(true));
     alertsService.questionModal.and.returnValue(of(true));
@@ -61,20 +61,20 @@ describe('SuperHeroesPageComponent', () => {
     fixture.detectChanges();
 
     expect(shDataService.getHeroes).toHaveBeenCalled();
-    expect(component.superHeroesList).toEqual(MOCK_SUPER_HEROES);
+    expect(component.superHeroesList).toEqual(MOCK_HEROES_LIST);
   });
 
 
   it('should select hero and open modal', () => {
     modalService.openViewHeroModal.and.returnValue(of(true));
-    component.selectedHero(MOCK_SUPER_HEROES[0]);
+    component.selectedHero(MOCK_HEROES_LIST[0]);
 
-    expect(modalService.openViewHeroModal).toHaveBeenCalledWith(MOCK_SUPER_HEROES[0].id);
+    expect(modalService.openViewHeroModal).toHaveBeenCalledWith(MOCK_HEROES_LIST[0].id);
   });
 
 
   it('should filter heroes by name', () => {
-    const mock_filter = MOCK_SUPER_HEROES[0];
+    const mock_filter = MOCK_HEROES_LIST[0];
     shDataService.filterByName.and.returnValue(of([mock_filter]));
     component.filteredByName('batman');
 
@@ -84,14 +84,14 @@ describe('SuperHeroesPageComponent', () => {
 
 
   it('should return heroes list if not have a filter', () => {
-    shDataService.getHeroes.and.returnValue(of(MOCK_SUPER_HEROES));
+    shDataService.getHeroes.and.returnValue(of(MOCK_HEROES_LIST));
     component.valueFilter = '';
     component.filteredByName('');
     fixture.detectChanges();
 
     expect(shDataService.filterByName).not.toHaveBeenCalled();
     expect(shDataService.getHeroes).toHaveBeenCalled();
-    expect(component.superHeroesList).toEqual(MOCK_SUPER_HEROES);
+    expect(component.superHeroesList).toEqual(MOCK_HEROES_LIST);
   });
 
 
@@ -103,19 +103,19 @@ describe('SuperHeroesPageComponent', () => {
 
 
   it('should navigate to edit hero', () => {
-    component.editHero(MOCK_SUPER_HEROES[0]);
+    component.editHero(MOCK_HEROES_LIST[0]);
 
-    expect(router.navigate).toHaveBeenCalledWith([ROUTES_CONST.EDIT(MOCK_SUPER_HEROES[0].id)]);
+    expect(router.navigate).toHaveBeenCalledWith([ROUTES_CONST.EDIT(MOCK_HEROES_LIST[0].id)]);
   });
 
 
   it('should delete hero', () => {
     alertsService.questionModal.and.returnValue(of(true));
     shDataService.deleteHero.and.returnValue(of(true));
-    component.deleteHero(MOCK_SUPER_HEROES[0]);
+    component.deleteHero(MOCK_HEROES_LIST[0]);
 
     expect(alertsService.questionModal).toHaveBeenCalled();
-    expect(shDataService.deleteHero).toHaveBeenCalledWith(MOCK_SUPER_HEROES[0].id);
+    expect(shDataService.deleteHero).toHaveBeenCalledWith(MOCK_HEROES_LIST[0].id);
   });
 
 
@@ -124,9 +124,9 @@ describe('SuperHeroesPageComponent', () => {
 
     shDataService.deleteHero.and.returnValue(of(true));
     alertsService.success.and.returnValue(of(true));
-    component.confirmDelete(MOCK_SUPER_HEROES[0].id);
+    component.confirmDelete(MOCK_HEROES_LIST[0].id);
 
-    expect(shDataService.deleteHero).toHaveBeenCalledWith(MOCK_SUPER_HEROES[0].id);
+    expect(shDataService.deleteHero).toHaveBeenCalledWith(MOCK_HEROES_LIST[0].id);
     expect(component.getHeroes).toHaveBeenCalled();
   });
 

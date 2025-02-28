@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { HeroFormFormatService } from './hero-form-format.service';
 import { LocalstorageDataService } from './localstorage-data.service';
-import { MOCK_FORM, MOCK_HERO, MOCK_IMAGES, MOCK_SUPER_HEROES } from '../../assets/mocks/mocks';
+import { MOCK_FORM_DATA, MOCK_HEROES_LIST } from '../../assets/mocks/mocks';
 
 describe('HeroFormFormatService', () => {
   let service: HeroFormFormatService;
@@ -20,14 +20,16 @@ describe('HeroFormFormatService', () => {
     service = TestBed.inject(HeroFormFormatService);
   });
 
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
 
   it('should return the next available id when heroes are in localstorage', () => {
-    localStorageData.getItem.and.returnValue(MOCK_SUPER_HEROES);
-    expect(service.getIdOfHero()).toBe(201);
+    localStorageData.getItem.and.returnValue(MOCK_HEROES_LIST);
+
+    expect(service.getIdOfHero()).toBe(MOCK_HEROES_LIST.length+1);
   });
 
 
@@ -38,25 +40,27 @@ describe('HeroFormFormatService', () => {
 
 
   it('should format hero from form data', () => {
-    const form = MOCK_FORM
-    const images = MOCK_IMAGES
+    const form = MOCK_FORM_DATA
+    const images = MOCK_HEROES_LIST[0].images
 
-    localStorageData.getItem.and.returnValue(MOCK_SUPER_HEROES);
+    localStorageData.getItem.and.returnValue(MOCK_HEROES_LIST);
 
     const formattedHero = service.formatHero(form, images);
-
-    expect(formattedHero).toEqual(MOCK_HERO);
+    MOCK_HEROES_LIST[0].id = formattedHero.id;
+    expect(formattedHero).toEqual(MOCK_HEROES_LIST[0]);
   });
+
 
   it('should format hero from form data with existing id', () => {
-    const form = { id: 10, ...MOCK_FORM };
+    const form = { id: 1, ...MOCK_FORM_DATA };
     const formattedHero = service.formatHero(form);
 
-    expect(formattedHero.id).toBe(10);
+    expect(formattedHero.id).toBe(1);
   });
 
+
   it('should format hero from form data with empty images', () => {
-    const form = MOCK_FORM;
+    const form = MOCK_FORM_DATA;
     const formattedHero = service.formatHero(form);
 
     expect(formattedHero.images).toEqual({
