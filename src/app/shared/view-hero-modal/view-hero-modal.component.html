@@ -1,17 +1,14 @@
 <div class="content">
   <div class="content__header" mat-dialog-title>
     <div class="content__header--image">
-      <ng-container *ngIf="hero?.images?.sm; else noData">
+      @if (hero?.images?.sm) {
         <img src="{{ hero?.images?.sm }}" alt="super-hero" class="img">
-      </ng-container>
-
-      <ng-template #noData>
+      } @else {
         <p>{{ 'NO_IMAGE' | translate }}</p>
-      </ng-template>
+      }
     </div>
 
     <div class="content__header--data">
-
       <div class="name">
         <p>{{hero?.name}}</p>
       </div>

@@ -9,9 +9,10 @@
            (input)="filtered()"
            placeholder="{{ 'FINDER.PLACEHOLDER' | translate}}">
 
-    <button matSuffix mat-icon-button aria-label="Clear" *ngIf="valueFilter" (click)="cleanFilter()" class="btn-clear">
-      <mat-icon>close</mat-icon>
-    </button>
-
+    @if (valueFilter) {
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="cleanFilter()" class="btn-clear">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
   </mat-form-field>
 </div>

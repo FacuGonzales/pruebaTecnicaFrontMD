@@ -13,17 +13,15 @@
     </div>
 
     <div class="container__results--table-results">
-      <ng-container *ngIf="superHeroesList.length; else noData">
+      @if (superHeroesList.length) {
         <app-super-heroes-table [superHeroesList]="superHeroesList"
                                 (emitEditHero)="editHero($event)"
                                 (emitDeleteHero)="deleteHero($event)"
                                 (selectHero)="selectedHero($event)">
         </app-super-heroes-table>
-      </ng-container>
-
-      <ng-template #noData>
+      } @else {
         <p class="message-info">{{ 'HOME.MESSAGE' | translate }} {{ valueFilter }}</p>
-      </ng-template>
+      }
     </div>
   </div>
 </div>

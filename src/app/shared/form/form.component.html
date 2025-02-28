@@ -7,12 +7,15 @@
         <input type="text"
                matInput
                formControlName="name"
+               appTextUppercaseTransform
                placeholder="{{'MODAL.NAME' | translate}}">
       </mat-form-field>
 
-      <div class="content-error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
-        {{'EDIT.ERRORS.NAME_REQUIRED' | translate}}
-      </div>
+      @if (form.get('name')?.touched && form.get('name')?.errors?.['required']) {
+        <div class="content-error">
+          {{'EDIT.ERRORS.NAME_REQUIRED' | translate}}
+        </div>
+      }
     </div>
 
     <div class="content-form__appearance">
@@ -26,13 +29,15 @@
                  placeholder="{{'MODAL.GENDER' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched">
-          {{'EDIT.ERRORS.GENDER_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('gender')?.hasError('pattern') && form.get('gender')?.touched">
-          {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
-        </div>
+        @if (form.get('gender')?.touched) {
+          <div class="content-error">
+            @if (form.get('gender')?.errors?.['required']) {
+              {{'EDIT.ERRORS.GENDER_REQUIRED' | translate}}
+            } @else if (form.get('gender')?.hasError('pattern')) {
+              {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__appearance--height">
@@ -44,13 +49,15 @@
                 placeholder="{{'MODAL.HEIGTH' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('height')?.invalid && form.get('height')?.touched">
-          {{'EDIT.ERRORS.HEIGTH_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('height')?.hasError('pattern') && form.get('height')?.touched">
-          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
-        </div>
+        @if (form.get('height')?.touched) {
+          <div class="content-error">
+            @if (form.get('height')?.errors?.['required']) {
+              {{'EDIT.ERRORS.HEIGTH_REQUIRED' | translate}}
+            } @else if (form.get('height')?.hasError('pattern')) {
+              {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__appearance--weight">
@@ -62,13 +69,11 @@
                 placeholder="{{'MODAL.WEIGHT' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('weight')?.invalid && form.get('weight')?.touched">
-          {{'EDIT.ERRORS.WEIGHT_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('weight')?.hasError('pattern') && form.get('weight')?.touched">
-          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
-        </div>
+        @if (form.get('weight')?.touched && form.get('weight')?.errors?.['required']) {
+          <div class="content-error">
+            {{'EDIT.ERRORS.WEIGHT_REQUIRED' | translate}}
+          </div>
+        }
       </div>
 
       <div class="content-form__appearance--race">
@@ -80,13 +85,15 @@
                 placeholder="{{'MODAL.RACE' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('race')?.invalid && form.get('race')?.touched">
-          {{'EDIT.ERRORS.RACE_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('race')?.hasError('pattern') && form.get('race')?.touched">
-          {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
-        </div>
+        @if (form.get('race')?.touched) {
+          <div class="content-error">
+            @if (form.get('race')?.errors?.['required']) {
+              {{'EDIT.ERRORS.RACE_REQUIRED' | translate}}
+            } @else if (form.get('race')?.hasError('pattern')) {
+              {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
+            }
+          </div>
+        }
       </div>
 
     </div>
@@ -101,13 +108,15 @@
                 placeholder="{{'MODAL.ALIGNMENT' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('alignment')?.invalid && form.get('alignment')?.touched">
-          {{'EDIT.ERRORS.ALIGNMENT_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('alignment')?.hasError('pattern') && form.get('alignment')?.touched">
-          {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
-        </div>
+        @if (form.get('alignment')?.touched) {
+          <div class="content-error">
+            @if (form.get('alignment')?.errors?.['required']) {
+              {{'EDIT.ERRORS.ALIGNMENT_REQUIRED' | translate}}
+            } @else if (form.get('alignment')?.hasError('pattern')) {
+              {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__biography--firstAppearance">
@@ -118,10 +127,6 @@
                 formControlName="firstAppearance"
                 placeholder="{{'MODAL.FIRST_APPEARANCE' | translate}}">
         </mat-form-field>
-
-        <div class="content-error" *ngIf="form.get('firstAppearance')?.hasError('pattern') && form.get('firstAppearance')?.touched">
-          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
-        </div>
       </div>
 
       <div class="content-form__biography--fullName">
@@ -133,13 +138,15 @@
                 placeholder="{{'MODAL.FULL_NAME' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched">
-          {{'EDIT.ERRORS.FULL_NAME_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('fullName')?.hasError('pattern') && form.get('fullName')?.touched">
-          {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
-        </div>
+        @if (form.get('fullName')?.touched) {
+          <div class="content-error">
+            @if (form.get('fullName')?.errors?.['required']) {
+              {{'EDIT.ERRORS.FULL_NAME_REQUIRED' | translate}}
+            } @else if (form.get('fullName')?.hasError('pattern')) {
+              {{'EDIT.ERRORS.ONLY_LETTERS' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__biography--placeOfBirth">
@@ -150,10 +157,6 @@
                 formControlName="placeOfBirth"
                 placeholder="{{'MODAL.PLACE_OF_BIRTH' | translate}}">
         </mat-form-field>
-
-        <div class="content-error" *ngIf="form.get('placeOfBirth')?.hasError('pattern') && form.get('placeOfBirth')?.touched">
-          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
-        </div>
       </div>
 
       <div class="content-form__biography--publisher">
@@ -164,14 +167,6 @@
                 formControlName="publisher"
                 placeholder="{{'MODAL.PUBLISHER' | translate}}">
         </mat-form-field>
-
-        <div class="content-error" *ngIf="form.get('publisher')?.invalid && form.get('publisher')?.touched">
-          {{'EDIT.ERRORS.PUBLISHER_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('publisher')?.hasError('pattern') && form.get('publisher')?.touched">
-          {{'EDIT.ERRORS.ALPHANUMERIC' | translate}}
-        </div>
       </div>
     </div>
 
@@ -185,13 +180,15 @@
                 placeholder="{{'MODAL.COMBAT' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('combat')?.invalid && form.get('combat')?.touched">
-          {{'EDIT.ERRORS.COMBAT_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('combat')?.hasError('min') && form.get('combat')?.touched">
-          {{'EDIT.ERRORS.MIN_1' | translate}}
-        </div>
+        @if (form.get('combat')?.touched) {
+          <div class="content-error">
+            @if (form.get('combat')?.errors?.['required']) {
+              {{'EDIT.ERRORS.COMBAT_REQUIRED' | translate}}
+            } @else if (form.get('combat')?.hasError('min')) {
+              {{'EDIT.ERRORS.MIN_1' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__powerstats--durability">
@@ -203,13 +200,15 @@
                 placeholder="{{'MODAL.DURABILITY' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('durability')?.invalid && form.get('durability')?.touched">
-          {{'EDIT.ERRORS.DURABILITY_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('durability')?.hasError('min') && form.get('durability')?.touched">
-          {{'EDIT.ERRORS.MIN_1' | translate}}
-        </div>
+        @if (form.get('durability')?.touched) {
+          <div class="content-error">
+            @if (form.get('durability')?.errors?.['required']) {
+              {{'EDIT.ERRORS.DURABILITY_REQUIRED' | translate}}
+            } @else if (form.get('durability')?.hasError('min')) {
+              {{'EDIT.ERRORS.MIN_1' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__powerstats--intelligence">
@@ -221,13 +220,15 @@
                 placeholder="{{'MODAL.INTELLIGENCE' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('intelligence')?.invalid && form.get('intelligence')?.touched">
-          {{'EDIT.ERRORS.INTELLIGENCE_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('intelligence')?.hasError('min') && form.get('intelligence')?.touched">
-          {{'EDIT.ERRORS.MIN_1' | translate}}
-        </div>
+        @if (form.get('intelligence')?.touched) {
+          <div class="content-error">
+            @if (form.get('intelligence')?.errors?.['required']) {
+              {{'EDIT.ERRORS.INTELLIGENCE_REQUIRED' | translate}}
+            } @else if (form.get('intelligence')?.hasError('min')) {
+              {{'EDIT.ERRORS.MIN_1' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__powerstats--power">
@@ -239,13 +240,15 @@
                 placeholder="{{'MODAL.POWER' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('power')?.invalid && form.get('power')?.touched">
-          {{'EDIT.ERRORS.POWER_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('power')?.hasError('min') && form.get('power')?.touched">
-          {{'EDIT.ERRORS.MIN_1' | translate}}
-        </div>
+        @if (form.get('power')?.touched) {
+          <div class="content-error">
+            @if (form.get('power')?.errors?.['required']) {
+              {{'EDIT.ERRORS.POWER_REQUIRED' | translate}}
+            } @else if (form.get('power')?.hasError('min')) {
+              {{'EDIT.ERRORS.MIN_1' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__powerstats--speed">
@@ -257,13 +260,15 @@
                 placeholder="{{'MODAL.POWER' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('speed')?.invalid && form.get('speed')?.touched">
-          {{'EDIT.ERRORS.SPEED_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('speed')?.hasError('min') && form.get('speed')?.touched">
-          {{'EDIT.ERRORS.MIN_1' | translate}}
-        </div>
+        @if (form.get('speed')?.touched) {
+          <div class="content-error">
+            @if (form.get('speed')?.errors?.['required']) {
+              {{'EDIT.ERRORS.SPEED_REQUIRED' | translate}}
+            } @else if (form.get('speed')?.hasError('min')) {
+              {{'EDIT.ERRORS.MIN_1' | translate}}
+            }
+          </div>
+        }
       </div>
 
       <div class="content-form__powerstats--strength">
@@ -275,13 +280,15 @@
                 placeholder="{{'MODAL.STRENGTH' | translate}}">
         </mat-form-field>
 
-        <div class="content-error" *ngIf="form.get('strength')?.invalid && form.get('strength')?.touched">
-          {{'EDIT.ERRORS.STRENGTH_REQUIRED' | translate}}
-        </div>
-
-        <div class="content-error" *ngIf="form.get('strength')?.hasError('min') && form.get('strength')?.touched">
-          {{'EDIT.ERRORS.MIN_1' | translate}}
-        </div>
+        @if (form.get('strength')?.touched) {
+          <div class="content-error">
+            @if (form.get('strength')?.errors?.['required']) {
+              {{'EDIT.ERRORS.STRENGTH_REQUIRED' | translate}}
+            } @else if (form.get('strength')?.hasError('min')) {
+              {{'EDIT.ERRORS.MIN_1' | translate}}
+            }
+          </div>
+        }
       </div>
     </div>
 

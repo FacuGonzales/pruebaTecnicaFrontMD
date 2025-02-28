@@ -4,13 +4,11 @@
     <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef>{{ 'TABLE.COLUMNS.IMAGE' | translate}}</th>
       <td mat-cell *matCellDef="let hero">
-        <ng-container *ngIf="hero.images.xs; else noData">
+        @if (hero.images.xs) {
           <img src="{{ hero?.images?.xs }}" alt="super-hero" class="image">
-        </ng-container>
-
-        <ng-template #noData>
+        } @else {
           <p>{{ 'NO_IMAGE' | translate }}</p>
-        </ng-template>
+        }
       </td>
     </ng-container>
 
