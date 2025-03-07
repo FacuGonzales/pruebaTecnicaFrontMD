@@ -1,3 +1,9 @@
+@import "../../../assets/colors/colors.scss";
+
+::ng-deep .mat-mdc-button:not(:disabled) {
+  color: $primary-color !important
+}
+
 .content {
   margin: 10px;
 

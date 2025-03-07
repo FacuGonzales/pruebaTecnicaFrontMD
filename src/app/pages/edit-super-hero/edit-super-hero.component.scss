@@ -7,6 +7,14 @@
   }
 }
 
+@media (max-width: 1325px) {
+  .content {
+    &__forms {
+      width: 80%;
+    }
+  }
+}
+
 @media (max-width: 780px) {
   .content {
     &__forms {

@@ -28,6 +28,20 @@
   }
 }
 
+@media (max-width: 1325px) {
+  .container {
+
+    &__create-btn {
+      &--button {
+        width: 80%;
+      }
+    }
+    &__results {
+      width: 80%;
+    }
+  }
+}
+
 @media (max-width: 780px) {
   .container {
     &__create-btn {

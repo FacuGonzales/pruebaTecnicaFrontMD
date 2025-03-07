@@ -17,7 +17,7 @@
     display: grid;
     gap: 15px;
     grid-auto-rows: auto;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   &__biography {
@@ -64,6 +64,18 @@
   top: -20px;
 }
 
+@media (max-width: 1325px) {
+  .content-form {
+
+    &__appearance {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__biography {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
 
 @media (max-width: 780px) {
   .content-form {
