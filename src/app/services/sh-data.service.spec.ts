@@ -1,11 +1,12 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { ShDataService } from './sh-data.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { LocalstorageDataService } from './localstorage-data.service';
 import { LoaderService } from './loader.service';
 import { API_CONFIG } from '../api.config';
 import { MOCK_CREATE_HERO, MOCK_HEROES_LIST } from '../../assets/mocks/mocks';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ShDataService', () => {
   let service: ShDataService;
@@ -18,10 +19,12 @@ describe('ShDataService', () => {
     loaderData = jasmine.createSpyObj('LoaderService', ['viewLoader', 'disabledLoader']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [],
       providers: [
         { provide: LocalstorageDataService, useValue: localStorageData },
         { provide: LoaderService, useValue: loaderData },
+        provideHttpClient(),
+        provideHttpClientTesting(),
       ],
     });
 
