@@ -199,3 +199,36 @@ export const MOCK_MESSAGE_UPDATE: AlertMessage = {
   title: 'ALERTS.MESSAGES.OK.TITLE',
   text: 'ALERTS.MESSAGES.OK.TEXT_UPDATE'
 }
+
+
+export const MOCK_HEROES_NOT_DATA: SuperHero = {
+  id: 1,
+  name: "A-bomb",
+  appearance: {
+    gender: "",
+    height: "",
+    weight: "",
+    race: ""
+  },
+  biography: {
+    alignment: "",
+    firstAppearance: "",
+    fullName: "",
+    placeOfBirth: "",
+    publisher: ""
+  },
+  images: {
+    lg: "",
+    md: "",
+    sm: "",
+    xs: ""
+  },
+  powerstats: {
+    combat: 0,
+    durability: 0,
+    intelligence: 0,
+    power: 0,
+    speed: 0,
+    strength: 0
+  }
+}
