@@ -5,7 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroFormFormatService } from '../../services/hero-form-format.service';
 import { of } from 'rxjs';
-import { MOCK_HEROES_LIST } from '../../../assets/mocks/mocks';
+import { MOCK_HEROES_LIST, MOCK_HEROES_NOT_DATA } from '../../../assets/mocks/mocks';
 
 class MOCK_FORMAT_DATA {
   formatHero() {
@@ -34,6 +34,7 @@ describe('FormComponent', () => {
     fixture.detectChanges();
   });
 
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -44,6 +45,64 @@ describe('FormComponent', () => {
 
     component.cancel();
     expect(spy1).toHaveBeenCalled();
+  });
+
+
+  it('should complet form', () => {
+    const newData = { ...MOCK_HEROES_LIST[0], id: 1 };
+    component.data = newData;
+
+    const MOCK = {
+      id: 1,
+      name: 'A-bomb',
+      alignment: 'Good',
+      firstAppearance: 'Hulk vol 2 #2 (april, 2008) (as a-bomb)',
+      fullName: 'Richard milhouse jones',
+      placeOfBirth: 'Scarsdale, arizona',
+      gender: 'Male',
+      height: "6'8",
+      weight: '980 lb',
+      race: 'Human',
+      publisher: 'Marvel Comics',
+      combat: 64,
+      durability: 80,
+      intelligence: 38,
+      power: 24,
+      speed: 17,
+      strength: 100
+    }
+
+    component.completForm();
+    expect(component.form.value).toEqual(MOCK)
+  });
+
+
+  it('should complete the form but with incomplete data', () => {
+    const newData = { ...MOCK_HEROES_NOT_DATA, id: 1 };
+    component.data = newData;
+
+    const MOCK = {
+      id: 1,
+      name: 'A-bomb',
+      alignment: '',
+      firstAppearance: '',
+      fullName: '',
+      placeOfBirth: '',
+      gender: '',
+      height: '',
+      weight: '',
+      race: '',
+      publisher: '',
+      combat: 0,
+      durability: 0,
+      intelligence: 0,
+      power: 0,
+      speed: 0,
+      strength: 0
+    }
+
+    component.completForm();
+    expect(component.form.value).toEqual(MOCK)
   });
 
 
