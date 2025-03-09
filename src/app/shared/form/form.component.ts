@@ -31,7 +31,7 @@ export class FormComponent implements OnChanges {
   @Output() cancelForm = new EventEmitter();
   @Output() saveForm = new EventEmitter();
 
-  private paternOnlyNumbers = /^[0-9,\'\.]*$/;
+  private paternOnlyNumbers = /^[0-9,\\'.]*$/;
   private paternOnlyLetters = /^[a-zA-Z\s]*$/;
 
   constructor(private fb: FormBuilder, private translate: TranslateService, private heroFormat: HeroFormFormatService) {
@@ -71,23 +71,23 @@ export class FormComponent implements OnChanges {
 
   public completForm(): void {
     this.form.setValue({
-      id: this.data.id,
-      name: this.data.name,
-      gender: this.data.appearance.gender,
-      height: this.data.appearance.height,
-      weight: this.data.appearance.weight,
-      race: this.data.appearance.race,
-      alignment: this.data.biography.alignment,
-      firstAppearance: this.data.biography.firstAppearance,
-      fullName: this.data.biography.fullName,
-      placeOfBirth: this.data.biography.placeOfBirth,
-      publisher: this.data.biography.publisher,
-      combat: this.data.powerstats.combat,
-      durability: this.data.powerstats.durability,
-      intelligence: this.data.powerstats.intelligence,
-      power: this.data.powerstats.power,
-      speed: this.data.powerstats.speed,
-      strength: this.data.powerstats.strength,
+      id: this.data?.id,
+      name: this.data?.name,
+      gender: this.data?.appearance?.gender || '',
+      height: this.data?.appearance?.height || '',
+      weight: this.data?.appearance?.weight || '',
+      race: this.data?.appearance?.race || '',
+      alignment: this.data?.biography?.alignment || '',
+      firstAppearance: this.data?.biography?.firstAppearance || '',
+      fullName: this.data?.biography?.fullName || '',
+      placeOfBirth: this.data?.biography?.placeOfBirth || '',
+      publisher: this.data?.biography?.publisher || '',
+      combat: this.data?.powerstats?.combat || 0,
+      durability: this.data?.powerstats?.durability || 0,
+      intelligence: this.data?.powerstats?.intelligence || 0,
+      power: this.data?.powerstats?.power || 0,
+      speed: this.data?.powerstats?.speed || 0,
+      strength: this.data?.powerstats?.strength || 0,
     })
   }
 
