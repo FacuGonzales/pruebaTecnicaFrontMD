@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SuperHeroesPageComponent } from './super-heroes-page.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -33,7 +32,7 @@ describe('SuperHeroesPageComponent', () => {
     alertsService.success.and.returnValue(of(true));
 
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), HttpClientTestingModule, SuperHeroesPageComponent, BrowserAnimationsModule],
+      imports: [TranslateModule.forRoot(), SuperHeroesPageComponent, BrowserAnimationsModule],
       declarations: [],
       providers: [
         { provide: ShDataService, useValue: shDataService },

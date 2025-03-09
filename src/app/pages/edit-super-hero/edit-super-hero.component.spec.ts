@@ -2,7 +2,6 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
 import { EditSuperHeroComponent } from './edit-super-hero.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BehaviorSubject, of } from 'rxjs';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +29,7 @@ describe('EditSuperHeroComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [EditSuperHeroComponent, TranslateModule.forRoot(), HttpClientTestingModule, BrowserAnimationsModule ],
+      imports: [EditSuperHeroComponent, TranslateModule.forRoot(), BrowserAnimationsModule ],
       providers: [
         { provide: ShDataService, useValue: shDataService },
         { provide: AlertsService, useValue: alertsService },
