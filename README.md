@@ -105,6 +105,10 @@ Access your application:
 
 * <http://localhost:8080>
   
+Stop containers
+
+* docker-compose down
+  
 ## Additional Notes
 
 localStorage is used to store heroes in the browser, allowing the data to persist between sessions.
