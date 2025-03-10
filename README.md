@@ -91,6 +91,20 @@ export const API_CONFIG = {
   baseUrl: 'api'
 };
 
+## Getting the app up with DOCKER
+
+Building the images:
+
+* docker-compose build
+
+Lifting the containers:
+
+* docker-compose up
+
+Access your application:
+
+* <http://localhost:8080>
+  
 ## Additional Notes
 
 localStorage is used to store heroes in the browser, allowing the data to persist between sessions.
