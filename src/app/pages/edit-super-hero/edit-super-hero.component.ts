@@ -66,8 +66,14 @@ export class EditSuperHeroComponent implements OnInit, OnDestroy {
     })
   }
 
-  public cancel(back: boolean): void {
-    this.router.navigate([ROUTES_CONST.HOME]);
+  public cancel(): void {
+    this.alert.cancelEdit()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((resp: boolean) => {
+      if(resp) {
+        this.router.navigate([ROUTES_CONST.HOME]);
+      }
+    })
   }
 
   public save(hero: SuperHero): void {

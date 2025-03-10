@@ -59,4 +59,23 @@ export class AlertsService {
       icon: "error"
     });
   }
+
+
+  public cancelEdit(): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      Swal.fire({
+        title: this.translate.instant('ALERTS.MESSAGES.CANCEL_EDIT'),
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: this.translate.instant('ALERTS.MESSAGES.BTN.CONFIRM'),
+      }).then((result) => {
+        if (result.isConfirmed) {
+          observer.next(true);
+        } else {
+          observer.next(false);
+        }
+        observer.complete();
+      });
+    })
+  }
 }

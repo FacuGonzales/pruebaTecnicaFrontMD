@@ -86,8 +86,8 @@
       "ERROR":{
         "TITLE": "Upps... Hubo un error",
         "TEXT": "Lo sentimos, hubo un error inesperado"
-      }
-
+      },
+      "CANCEL_EDIT": "¿Desea cancelar la edición?"
     }
   },
   "BUTTONS": {
