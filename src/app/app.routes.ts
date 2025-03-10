@@ -18,6 +18,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: () => import('./pages/super-heroes-page/super-heroes-page.component').then(p => p.SuperHeroesPageComponent)
+    loadComponent: () => import('./pages/super-heroes-page/super-heroes-page.component').then(p => p.SuperHeroesPageComponent),
+    pathMatch: 'full'
   }
 ];
