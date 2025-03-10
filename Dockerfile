@@ -21,7 +21,7 @@ RUN npm install
 # Copia el resto de los archivos de la aplicación
 COPY . .
 
-# Copiar proxy.conf.json si no lo has hecho antes
+# Copiar proxy.conf.json
 COPY proxy.conf.json ./proxy.conf.json
 
 # Construye la aplicación Angular para producción

@@ -1,12 +1,15 @@
-version: '3'
+version: '3.8'
+
 services:
-  angular-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  frontend:
+    build: .
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - .:/app
-    environment:
-      - NODE_ENV=production
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
