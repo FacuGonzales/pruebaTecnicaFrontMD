@@ -60,7 +60,7 @@ describe('ShDataService', () => {
       done();
     });
 
-    const req = httpTestingController.expectOne(`${API_CONFIG.baseUrl}/all.json`);
+    const req = httpTestingController.expectOne(`${API_CONFIG.baseUrl.apiUrl}/all.json`);
     expect(req.request.method).toBe('GET');
     req.flush(MOCK_HEROES_LIST);
   });
@@ -76,7 +76,7 @@ describe('ShDataService', () => {
       done();
     });
 
-    const req = httpTestingController.expectOne(`${API_CONFIG.baseUrl}/id/1.json`);
+    const req = httpTestingController.expectOne(`${API_CONFIG.baseUrl.apiUrl}/id/1.json`);
     expect(req.request.method).toBe('GET');
     req.flush([MOCK_HEROES_LIST[0]]);
   });
@@ -92,7 +92,7 @@ describe('ShDataService', () => {
       },
     });
 
-    const req = httpTestingController.expectOne(`${API_CONFIG.baseUrl}/id/3.json`);
+    const req = httpTestingController.expectOne(`${API_CONFIG.baseUrl.apiUrl}/id/3.json`);
     expect(req.request.method).toBe('GET');
     req.flush([]);
   });

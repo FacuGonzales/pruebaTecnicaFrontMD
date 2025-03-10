@@ -20,7 +20,7 @@ describe('EditSuperHeroComponent', () => {
 
   beforeEach(async () => {
     shDataService = jasmine.createSpyObj('ShDataService', ['getHeroById', 'createHero', 'updateDataHero']);
-    alertsService = jasmine.createSpyObj('AlertsService', ['success']);
+    alertsService = jasmine.createSpyObj('AlertsService', ['success', 'cancelEdit']);
     router = jasmine.createSpyObj('Router', ['navigate']);
 
     activatedRoute = {
@@ -59,7 +59,10 @@ describe('EditSuperHeroComponent', () => {
 
 
   it('should navigate to home on cancel', () => {
-    component.cancel(true);
+    alertsService.cancelEdit.and.returnValue(of(true));
+    component.cancel();
+    fixture.detectChanges();
+    expect(alertsService.cancelEdit).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith([ROUTES_CONST.HOME]);
   });
 
