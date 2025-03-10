@@ -93,6 +93,8 @@ export const API_CONFIG = {
 
 ## Getting the app up with DOCKER
 
+We locate the console within the root of the project folder, and execute the following commands:
+
 Building the images:
 
 * docker-compose build
