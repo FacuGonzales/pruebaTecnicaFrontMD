@@ -103,7 +103,7 @@ Lifting the containers:
 
 Access your application:
 
-* <http://localhost:8080>
+* <http://localhost>
   
 Stop containers
 
